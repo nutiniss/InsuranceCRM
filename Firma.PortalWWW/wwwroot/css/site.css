@@ -36,6 +36,8 @@ body {
 .client-topbar {
     background-color: #ffffff;
     min-height: 55px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
 }
 
 .brand-section {
@@ -62,7 +64,7 @@ body {
 }
 
     .top-link:hover {
-        color: #20a05b;
+        color: #2787F1;
     }
 
 .icon-circle {
@@ -115,13 +117,13 @@ body {
 
         .client-navbar .nav-link:hover,
         .client-navbar .nav-link:focus {
-            color: #4db37c;
-            border-color: #4db37c;
+            color: #529ff4;
+            border-color: #529ff4;
         }
 
         .client-navbar .nav-link.active {
-            color: #20a05b;
-            border-color: #20a05b;
+            color: #2787F1;
+            border-color: #2787F1;
             background-color: transparent;
         }
 
@@ -131,6 +133,7 @@ body {
     min-height: 52px;
     color: #6c757d;
     font-size: 0.95rem;
+    padding-top: 0.5rem;
 }
 
 .footer-link {
@@ -141,7 +144,6 @@ body {
         color: #495057;
     }
 
-/* Przeniesione z Views/Shared/_Layout.cshtml.css */
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -150,12 +152,6 @@ a.navbar-brand {
 
 a {
     color: #0077cc;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active,

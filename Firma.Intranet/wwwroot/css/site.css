@@ -36,6 +36,8 @@ body {
 .agent-topbar {
     background-color: #ffffff;
     min-height: 55px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
 }
 
 .brand-section {
@@ -131,6 +133,7 @@ body {
     min-height: 52px;
     color: #6c757d;
     font-size: 0.95rem;
+    padding-top: 0.5rem;
 }
 
 .footer-link {
@@ -150,12 +153,6 @@ a.navbar-brand {
 
 a {
     color: #2e4a6b;
-}
-
-.btn-primary {
-    color: #20a05b;
-    background-color: #20a05b;
-    border-color: #20a05b;
 }
 
 .nav-pills .nav-link.active,
