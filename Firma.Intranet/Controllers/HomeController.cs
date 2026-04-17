@@ -8,6 +8,36 @@ namespace Firma.Intranet.Controllers
     {
         public IActionResult Index()
         {
+            return RedirectToAction(nameof(Pulpit));
+        }
+
+        public IActionResult Pulpit()
+        {
+            return View();
+        }
+
+        public IActionResult Obsluga()
+        {
+            return View();
+        }
+
+        public IActionResult Wiadomosci()
+        {
+            return View();
+        }
+
+        public IActionResult Polisy()
+        {
+            return View();
+        }
+
+        public IActionResult Oferty()
+        {
+            return View();
+        }
+
+        public IActionResult Administracja()
+        {
             return View();
         }
 
