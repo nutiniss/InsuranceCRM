@@ -76,12 +76,6 @@ body {
   font-size: 0.95rem;
 }
 
-
-.icon-circle i {
-  font-size: 0.95rem;
-  line-height: 1;
-}
-
 .notification-badge {
   position: absolute;
   top: -6px;
