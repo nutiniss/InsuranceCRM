@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Firma.Intranet</title>
+    <title>@ViewData["Title"] - Twoje ubezpieczenia</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,37 +11,56 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Firma.Intranet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <div class="agent-topbar border-bottom">
+            <div class="container-fluid px-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <a class="brand-section text-decoration-none text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/content/logoIntranet.png" alt="Logo Twoje ubezpieczenia" class="brand-logo" />
+                    <span class="brand-title">Twoje ubezpieczenia</span>
+                </a>
+
+                <div class="user-menu d-flex align-items-center flex-wrap gap-3">
+                    <a href="#" class="text-decoration-none top-link d-flex align-items-center gap-2">
+                        <span class="position-relative d-inline-block">
+                            <span class="icon-circle">🔔</span>
+                            <span class="badge rounded-pill bg-danger notification-badge">5</span>
+                        </span>
+                        <span>Powiadomienia</span>
+                    </a>
+                    <span class="divider"></span>
+                    <span class="d-flex align-items-center gap-2 text-secondary">
+                        <span class="icon-circle">👤</span>
+                        <span class="username">Jan Kowalski</span>
+                    </span>
+                    <a href="#" class="btn btn-outline-primary btn-sm px-3">WYLOGUJ</a>
                 </div>
+            </div>
+        </div>
+
+        <nav class="agent-navbar border-bottom">
+            <div class="container-fluid px-4">
+                <ul class="nav nav-tabs border-0 gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="#">Pulpit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Obsługa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Wiadomości</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Polisy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Oferty</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Administracja</a></li>
+                </ul>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Firma.Intranet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <main role="main" class="main-content container-fluid px-4 py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="agent-footer mt-auto">
+        <div class="container-fluid px-4 d-flex flex-wrap gap-3 align-items-center">
+            <span>© 2026 Twoje ubezpieczenia</span>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="footer-link">Polityka prywatności</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
