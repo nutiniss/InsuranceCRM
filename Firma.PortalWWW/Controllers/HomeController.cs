@@ -8,6 +8,31 @@ namespace Firma.PortalWWW.Controllers
     {
         public IActionResult Index()
         {
+            return RedirectToAction(nameof(Start));
+        }
+
+        public IActionResult Start()
+        {
+            return View();
+        }
+
+        public IActionResult Zgloszenia()
+        {
+            return View();
+        }
+
+        public IActionResult Wiadomosci()
+        {
+            return View();
+        }
+
+        public IActionResult MojePolisy()
+        {
+            return View();
+        }
+
+        public IActionResult MojeOferty()
+        {
             return View();
         }
 
