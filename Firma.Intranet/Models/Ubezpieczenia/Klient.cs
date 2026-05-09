@@ -1,0 +1,43 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace Firma.Intranet.Models.Ubezpieczenia
+{
+    public class Klient
+    {
+        [Key]
+        public int IdKlienta { get; set; }
+
+        [Required(ErrorMessage = "Imię klienta jest wymagane")]
+        [Display(Name = "Imię")]
+        public required string Imie { get; set; }
+
+        [Required(ErrorMessage = "Nazwisko klienta jest wymagane")]
+        public required string Nazwisko { get; set; }
+
+        [Display(Name = "PESEL")]
+        public string Pesel { get; set; } = string.Empty;
+
+        [Display(Name = "NIP")]
+        public string Nip { get; set; } = string.Empty;
+
+        [Display(Name = "REGON")]
+        public string Regon { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Adres e-mail jest wymagany")]
+        [EmailAddress(ErrorMessage = "Podaj poprawny adres e-mail")]
+        [Display(Name = "E-mail")]
+        public required string Email { get; set; }
+
+        [Required(ErrorMessage = "Numer telefonu jest wymagany")]
+        [Phone(ErrorMessage = "Podaj poprawny numer telefonu")]
+        public required string Telefon { get; set; }
+
+        [Display(Name = "Data urodzenia")]
+        public DateTime? DataUrodzenia { get; set; }
+
+        public ICollection<Oferta> Oferty { get; set; } = new List<Oferta>();
+        public ICollection<Polisa> Polisy { get; set; } = new List<Polisa>();
+        public ICollection<Zgloszenie> Zgloszenia { get; set; } = new List<Zgloszenie>();
+        public ICollection<Wiadomosc> Wiadomosci { get; set; } = new List<Wiadomosc>();
+    }
+}
