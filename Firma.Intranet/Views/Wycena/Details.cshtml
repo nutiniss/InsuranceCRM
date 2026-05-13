@@ -1,0 +1,60 @@
+﻿@model Firma.Intranet.Models.Ubezpieczenia.Wycena
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Wycena</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataWyceny)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataWyceny)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MetodaWyceny)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MetodaWyceny)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WartoscPrzedmiotuUbezpieczenia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WartoscPrzedmiotuUbezpieczenia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SumaUbezpieczenia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SumaUbezpieczenia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Skladka)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Skladka)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Uwagi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Uwagi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Oferta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Oferta.NumerOferty)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdWyceny">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
