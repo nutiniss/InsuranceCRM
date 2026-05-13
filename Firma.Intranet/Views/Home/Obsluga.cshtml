@@ -1,1 +1,24 @@
-tu będzie obsługa
+@{
+    ViewData["Title"] = "Obsługa";
+}
+
+<section class="module-page">
+    <div class="module-header">
+        <h1>Obsługa</h1>
+        <p>Wybierz obszar obsługi, aby przejść do odpowiedniej listy.</p>
+    </div>
+
+    <div class="module-grid two-columns">
+        <a class="module-tile" asp-controller="Zadanie" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-list-check"></i></span>
+            <span class="module-title">Zadania</span>
+            <span class="module-description">Przejdź do listy zadań.</span>
+        </a>
+
+        <a class="module-tile" asp-controller="Zgloszenie" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-headset"></i></span>
+            <span class="module-title">Zgłoszenia</span>
+            <span class="module-description">Przejdź do listy zgłoszeń.</span>
+        </a>
+    </div>
+</section>

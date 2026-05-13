@@ -1,1 +1,24 @@
-tu będzie administracja
+@{
+    ViewData["Title"] = "Administracja";
+}
+
+<section class="module-page">
+    <div class="module-header">
+        <h1>Administracja</h1>
+        <p>Zarządzaj użytkownikami oraz ofertami marketingowymi.</p>
+    </div>
+
+    <div class="module-grid two-columns">
+        <a class="module-tile" asp-controller="Uzytkownik" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-people"></i></span>
+            <span class="module-title">Użytkownicy</span>
+            <span class="module-description">Przejdź do listy użytkowników.</span>
+        </a>
+
+        <a class="module-tile" asp-controller="OfertaMarketingowa" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-megaphone"></i></span>
+            <span class="module-title">Oferty Marketingowe</span>
+            <span class="module-description">Przejdź do listy ofert marketingowych.</span>
+        </a>
+    </div>
+</section>
