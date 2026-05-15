@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Firma.Data.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FirmaContext>(options =>
