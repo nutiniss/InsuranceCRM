@@ -4,13 +4,6 @@
     ViewData["Title"] = "Edytuj: Wiadomość";
 }
 
-<div class="crm-page-heading">
-    <div>
-        <p class="crm-eyebrow">Wiadomości</p>
-        <h1>Edytuj: Wiadomość</h1>
-        <p class="crm-muted mb-0">Zaktualizuj dane rekordu i zapisz zmiany w systemie.</p>
-    </div>
-</div>
 <div class="crm-form-card">
 <div class="row g-3">
     <div class="col-lg-8 col-xl-6">
@@ -67,8 +60,8 @@
 </div>
 </div>
 
-<div>
-    <a asp-action="Index">Powrót do listy</a>
+<div class="d-flex gap-2 mt-3">
+    <a asp-action="Index" class="btn btn-outline-secondary">Powrót do listy</a>
 </div>
 
 @section Scripts {
