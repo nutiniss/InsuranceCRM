@@ -10,26 +10,23 @@
             <span class="hero-eyebrow">Portal klienta</span>
             <h1 class="hero-title">Witaj w swoim centrum ubezpieczeń</h1>
             <p class="hero-lead">
-                Sprawdzaj polisy, obsługuj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez administratora w module ofert marketingowych.
+                Sprawdzaj polisy, dodawaj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez agentów.
             </p>
         </div>
-        <div class="col-lg-4">
+        @* <div class="col-lg-4">
             <div class="hero-summary-card">
                 <span class="summary-label">Aktywne komunikaty</span>
                 <span class="summary-value">@Model.Count()</span>
                 <span class="summary-caption">ofert widocznych w portalu</span>
             </div>
-        </div>
+        </div> *@
     </div>
 </section>
 
 <section class="marketing-offers-section">
     <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
         <div>
-            <h2 class="section-title">Aktualne oferty i komunikaty</h2>
-            <p class="section-subtitle mb-0">
-                Treści poniższych kafelków są pobierane z modułu ofert marketingowych zarządzanego przez administratora.
-            </p>
+            <h2 class="section-title">Oferty</h2>            
         </div>
         <a class="btn btn-outline-primary" asp-controller="Home" asp-action="MojeOferty">Zobacz moje oferty</a>
     </div>
@@ -52,7 +49,7 @@
                             <h3 class="offer-title">@oferta.Tytul</h3>
                             <p class="offer-text">@oferta.Tresc</p>
                             <div class="mt-auto pt-3">
-                                <a class="btn btn-primary w-100" asp-controller="Home" asp-action="MojeOferty">Sprawdź szczegóły</a>
+                                <a class="btn btn-primary w-100" asp-controller="Home" asp-action="MojeOferty">Przejdź do ofert</a>
                             </div>
                         </div>
                     </article>
@@ -65,7 +62,7 @@
         <div class="empty-offers-state text-center p-5">
             <i class="bi bi-megaphone empty-offers-icon" aria-hidden="true"></i>
             <h3>Brak aktywnych ofert marketingowych</h3>
-            <p class="mb-0">Gdy administrator opublikuje nowe treści w module ofert marketingowych, pojawią się tutaj jako kafelki.</p>
+            <p class="mb-0">Obecnie brak ofert marketingowych</p>
         </div>
     }
 </section>
