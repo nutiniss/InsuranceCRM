@@ -1,1 +1,71 @@
-tu będzie start
+@model IEnumerable<Firma.Data.Data.Ubezpieczenia.OfertaMarketingowa>
+
+@{
+    ViewData["Title"] = "Start";
+}
+
+<section class="hero-panel mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">Portal klienta</span>
+            <h1 class="hero-title">Witaj w swoim centrum ubezpieczeń</h1>
+            <p class="hero-lead">
+                Sprawdzaj polisy, obsługuj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez administratora w module ofert marketingowych.
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">Aktywne komunikaty</span>
+                <span class="summary-value">@Model.Count()</span>
+                <span class="summary-caption">ofert widocznych w portalu</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="marketing-offers-section">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
+        <div>
+            <h2 class="section-title">Aktualne oferty i komunikaty</h2>
+            <p class="section-subtitle mb-0">
+                Treści poniższych kafelków są pobierane z modułu ofert marketingowych zarządzanego przez administratora.
+            </p>
+        </div>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="MojeOferty">Zobacz moje oferty</a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var oferta in Model)
+            {
+                <div class="col-12 col-md-6 col-xl-4">
+                    <article class="card marketing-offer-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                                <span class="offer-badge">@oferta.GrupaDocelowa</span>
+                                @if (oferta.DataWaznosci.HasValue)
+                                {
+                                    <span class="offer-validity">do @oferta.DataWaznosci.Value.ToString("dd.MM.yyyy")</span>
+                                }
+                            </div>
+                            <h3 class="offer-title">@oferta.Tytul</h3>
+                            <p class="offer-text">@oferta.Tresc</p>
+                            <div class="mt-auto pt-3">
+                                <a class="btn btn-primary w-100" asp-controller="Home" asp-action="MojeOferty">Sprawdź szczegóły</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-megaphone empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak aktywnych ofert marketingowych</h3>
+            <p class="mb-0">Gdy administrator opublikuje nowe treści w module ofert marketingowych, pojawią się tutaj jako kafelki.</p>
+        </div>
+    }
+</section>
