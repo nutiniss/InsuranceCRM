@@ -1,72 +1,77 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Zgloszenie
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj: Zgłoszenie";
 }
 
-<h1>Edit</h1>
-
-<h4>Zgloszenie</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Zgłoszenia</p>
+        <h1>Edytuj: Zgłoszenie</h1>
+        <p class="crm-muted mb-0">Zaktualizuj dane rekordu i zapisz zmiany w systemie.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdZgloszenia" />
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="NumerZgloszenia" class="control-label"></label>
                 <input asp-for="NumerZgloszenia" class="form-control" />
                 <span asp-validation-for="NumerZgloszenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Tytul" class="control-label"></label>
                 <input asp-for="Tytul" class="form-control" />
                 <span asp-validation-for="Tytul" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Opis" class="control-label"></label>
                 <input asp-for="Opis" class="form-control" />
                 <span asp-validation-for="Opis" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Typ" class="control-label"></label>
                 <input asp-for="Typ" class="form-control" />
                 <span asp-validation-for="Typ" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataUtworzenia" class="control-label"></label>
                 <input asp-for="DataUtworzenia" class="form-control" />
                 <span asp-validation-for="DataUtworzenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataZamkniecia" class="control-label"></label>
                 <input asp-for="DataZamkniecia" class="form-control" />
                 <span asp-validation-for="DataZamkniecia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdKlienta" class="control-label"></label>
                 <select asp-for="IdKlienta" class="form-control" asp-items="ViewBag.IdKlienta"></select>
                 <span asp-validation-for="IdKlienta" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdUzytkownika" class="control-label"></label>
                 <select asp-for="IdUzytkownika" class="form-control" asp-items="ViewBag.IdUzytkownika"></select>
                 <span asp-validation-for="IdUzytkownika" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

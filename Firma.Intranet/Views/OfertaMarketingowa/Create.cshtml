@@ -1,43 +1,47 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.OfertaMarketingowa
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj: Oferta marketingowa";
 }
 
-<h1>Create</h1>
-
-<h4>OfertaMarketingowa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Oferty marketingowe</p>
+        <h1>Dodaj: Oferta marketingowa</h1>
+        <p class="crm-muted mb-0">Uzupełnij dane wymagane do obsługi procesu w CRM.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Tytul" class="control-label"></label>
                 <input asp-for="Tytul" class="form-control" />
                 <span asp-validation-for="Tytul" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Tresc" class="control-label"></label>
                 <input asp-for="Tresc" class="form-control" />
                 <span asp-validation-for="Tresc" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="GrupaDocelowa" class="control-label"></label>
                 <input asp-for="GrupaDocelowa" class="form-control" />
                 <span asp-validation-for="GrupaDocelowa" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataUtworzenia" class="control-label"></label>
                 <input asp-for="DataUtworzenia" class="form-control" />
                 <span asp-validation-for="DataUtworzenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataPublikacji" class="control-label"></label>
                 <input asp-for="DataPublikacji" class="form-control" />
                 <span asp-validation-for="DataPublikacji" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataWaznosci" class="control-label"></label>
                 <input asp-for="DataWaznosci" class="form-control" />
                 <span asp-validation-for="DataWaznosci" class="text-danger"></span>
@@ -47,19 +51,20 @@
                     <input class="form-check-input" asp-for="CzyAktywna" /> @Html.DisplayNameFor(model => model.CzyAktywna)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdUzytkownika" class="control-label"></label>
                 <select asp-for="IdUzytkownika" class ="form-control" asp-items="ViewBag.IdUzytkownika"></select>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

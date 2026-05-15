@@ -1,15 +1,17 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Uzytkownik
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Archiwizuj: Użytkownik";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Uzytkownik</h4>
-    <hr />
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Użytkownicy</p>
+        <h1>Archiwizuj: Użytkownik</h1>
+        <p class="crm-muted mb-0">Rekord zostanie oznaczony statusem „Usunięty” i ukryty na liście, bez fizycznego kasowania danych.</p>
+    </div>
+</div>
+<div class="crm-form-card">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Imie)
@@ -45,7 +47,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdUzytkownika" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Archiwizuj" class="btn btn-danger" />
+        <a asp-action="Index">Powrót do listy</a>
     </form>
 </div>

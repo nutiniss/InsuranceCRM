@@ -1,14 +1,17 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.OfertaMarketingowa
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły: Oferta marketingowa";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>OfertaMarketingowa</h4>
-    <hr />
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Oferty marketingowe</p>
+        <h1>Szczegóły: Oferta marketingowa</h1>
+        <p class="crm-muted mb-0">Pełny podgląd danych rekordu CRM.</p>
+    </div>
+</div>
+<div class="crm-form-card">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Tytul)
@@ -61,6 +64,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdOfertyMarketingowej">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdOfertyMarketingowej">Edytuj</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>

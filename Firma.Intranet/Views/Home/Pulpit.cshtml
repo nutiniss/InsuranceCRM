@@ -1,72 +1,68 @@
 @{
     ViewData["Title"] = "Pulpit agenta";
+    var klienci = ViewData["Klienci"] ?? 0;
+    var polisy = ViewData["Polisy"] ?? 0;
+    var oferty = ViewData["Oferty"] ?? 0;
+    var zgloszenia = ViewData["Zgloszenia"] ?? 0;
+    var zadaniaOtwarte = ViewData["ZadaniaOtwarte"] ?? 0;
+    var wiadomosciNieprzeczytane = ViewData["WiadomosciNieprzeczytane"] ?? 0;
 }
 
 <section class="agent-dashboard">
-    <div class="news-panel">
-        <div class="news-header d-flex align-items-center justify-content-between gap-3 flex-wrap">
-            <h2 class="news-title mb-0">
-                <i class="bi bi-newspaper"></i>
-                Najnowsze wiadomości
-            </h2>
-            <a href="#" class="news-link">Zobacz wszystkie <i class="bi bi-chevron-right"></i></a>
+    <div class="crm-page-heading">
+        <div>
+            <p class="crm-eyebrow">Portal agenta</p>
+            <h1>Pulpit CRM</h1>
+            <p class="crm-muted mb-0">Najważniejsze wskaźniki, skróty do procesów i bieżąca obsługa portfela klientów.</p>
         </div>
-
-        <div class="news-list mt-4">
-            <article class="news-card">
-                <div class="news-date">08.11.2024</div>
-                <div class="news-content">
-                    <h3 class="news-item-title">Zgłoszenia do ubezpieczenia grupowego dla Agentów Grupy TU i OFWCA oraz ich małżonków i pełnoletnich dzieci</h3>
-                    <p class="news-desc mb-0">Przypominamy, że zbliża się termin zgłoszeń do ubezpieczenia grupowego dla Agentów Grupy TU i OFWCA...</p>
-                </div>
-                <span class="news-badge">NOWE</span>
-            </article>
-
-            <article class="news-card">
-                <div class="news-date">01.11.2024</div>
-                <div class="news-content">
-                    <h3 class="news-item-title">CRM NEWS: Teraz WIEM! Nowa strona CRM i Feniksa już dostępna w bazie wiedzy</h3>
-                    <p class="news-desc mb-0">Zastanawiasz się, gdzie znaleźć wszystko o Feniksie i Kampaniach CRM? Już nie musisz! Na wiem.tu.pl czeka na Ciebie...</p>
-                </div>
-            </article>
-        </div>
+        <a class="btn btn-success crm-primary-action" asp-controller="Klient" asp-action="Create"><i class="bi bi-person-plus"></i> Nowy klient</a>
     </div>
 
-    <div class="stats-grid mt-4">
+    <div class="stats-grid">
         <article class="stat-card">
-            <h4>Klienci aktywni z 1 polisą <i class="bi bi-info-circle"></i></h4>
-            <div class="stat-rows">
-                <div><span>Razem</span><strong>1001</strong></div>
-                <div><span>TU SA</span><strong>702</strong></div>
-                <div><span>TU Życie</span><strong>21</strong></div>
-            </div>
-        </article>
-
-        <article class="stat-card">
-            <h4>Klienci aktywni - #mojeTU</h4>
+            <h4>Klienci <i class="bi bi-people"></i></h4>
             <div class="stat-rows two-columns">
-                <div><span>ma konto</span><strong>1259</strong></div>
-                <div><span>nie ma konta</span><strong>1231</strong></div>
+                <div><span>Aktywni</span><strong>@klienci</strong></div>
+                <div><span>Nowy rekord</span><a asp-controller="Klient" asp-action="Create">Dodaj</a></div>
             </div>
         </article>
 
         <article class="stat-card">
-            <h4>Klienci nieaktywni <i class="bi bi-info-circle"></i></h4>
-            <div class="stat-rows">
-                <div><span>Razem</span><strong>1065</strong></div>
-                <div><span>TU SA</span><strong>585</strong></div>
-                <div><span>TU Życie</span><strong>2</strong></div>
+            <h4>Polisy <i class="bi bi-shield-check"></i></h4>
+            <div class="stat-rows two-columns">
+                <div><span>W portfelu</span><strong>@polisy</strong></div>
+                <div><span>Lista</span><a asp-controller="Polisa" asp-action="Index">Otwórz</a></div>
             </div>
         </article>
 
         <article class="stat-card">
-            <h4>Nowi klienci aktywni w agencji <i class="bi bi-info-circle"></i></h4>
-            <div class="stat-rows">
-                <div><span>Razem</span><strong>228</strong></div>
-                <div><span>Unijny</span><strong>2</strong></div>
-                <div><span>TU SA</span><strong>212</strong></div>
-                <div><span>TU Życie</span><strong>14</strong></div>
+            <h4>Oferty <i class="bi bi-file-earmark-text"></i></h4>
+            <div class="stat-rows two-columns">
+                <div><span>Aktywne</span><strong>@oferty</strong></div>
+                <div><span>Nowa oferta</span><a asp-controller="Oferta" asp-action="Create">Dodaj</a></div>
             </div>
         </article>
+
+        <article class="stat-card">
+            <h4>Obsługa <i class="bi bi-headset"></i></h4>
+            <div class="stat-rows two-columns">
+                <div><span>Zgłoszenia</span><strong>@zgloszenia</strong></div>
+                <div><span>Zadania otwarte</span><strong>@zadaniaOtwarte</strong></div>
+            </div>
+        </article>
+    </div>
+
+    <div class="module-grid two-columns mt-4">
+        <a class="module-tile" asp-controller="Zadanie" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-list-task"></i></span>
+            <span class="module-title">Zadania agenta</span>
+            <span class="module-description">Priorytety, działania posprzedażowe i kontakty do wykonania.</span>
+        </a>
+
+        <a class="module-tile" asp-controller="Wiadomosc" asp-action="Index">
+            <span class="module-icon" aria-hidden="true"><i class="bi bi-envelope-paper"></i></span>
+            <span class="module-title">Wiadomości</span>
+            <span class="module-description">Nieprzeczytane wiadomości: @wiadomosciNieprzeczytane. Przejdź do komunikacji z klientami.</span>
+        </a>
     </div>
 </section>

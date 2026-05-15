@@ -1,33 +1,37 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Uzytkownik
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj: Użytkownik";
 }
 
-<h1>Create</h1>
-
-<h4>Uzytkownik</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Użytkownicy</p>
+        <h1>Dodaj: Użytkownik</h1>
+        <p class="crm-muted mb-0">Uzupełnij dane wymagane do obsługi procesu w CRM.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Imie" class="control-label"></label>
                 <input asp-for="Imie" class="form-control" />
                 <span asp-validation-for="Imie" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Nazwisko" class="control-label"></label>
                 <input asp-for="Nazwisko" class="form-control" />
                 <span asp-validation-for="Nazwisko" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Rola" class="control-label"></label>
                 <input asp-for="Rola" class="form-control" />
                 <span asp-validation-for="Rola" class="text-danger"></span>
@@ -37,15 +41,16 @@
                     <input class="form-check-input" asp-for="CzyAktywny" /> @Html.DisplayNameFor(model => model.CzyAktywny)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

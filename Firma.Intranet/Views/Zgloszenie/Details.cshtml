@@ -1,14 +1,17 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Zgloszenie
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły: Zgłoszenie";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Zgloszenie</h4>
-    <hr />
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Zgłoszenia</p>
+        <h1>Szczegóły: Zgłoszenie</h1>
+        <p class="crm-muted mb-0">Pełny podgląd danych rekordu CRM.</p>
+    </div>
+</div>
+<div class="crm-form-card">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NumerZgloszenia)
@@ -67,6 +70,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdZgloszenia">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdZgloszenia">Edytuj</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>

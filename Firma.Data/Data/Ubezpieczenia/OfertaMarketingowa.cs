@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Firma.Data.Data.Common;
 
 namespace Firma.Data.Data.Ubezpieczenia
 {
-    public class OfertaMarketingowa
+    public class OfertaMarketingowa : ISoftDeletable
     {
         [Key]
         public int IdOfertyMarketingowej { get; set; }
@@ -36,5 +37,8 @@ namespace Firma.Data.Data.Ubezpieczenia
         [ForeignKey("Uzytkownik")]
         public int IdUzytkownika { get; set; }
         public Uzytkownik? Uzytkownik { get; set; }
+        [Display(Name = "Status rekordu")]
+        public string StatusRekordu { get; set; } = RecordStatus.Active;
+
     }
 }

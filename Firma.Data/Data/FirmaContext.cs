@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Firma.Data.Data.Common;
 using Firma.Data.Data.Ubezpieczenia;
 
 namespace Firma.Data.Data;
@@ -33,4 +34,20 @@ public class FirmaContext : DbContext
     public DbSet<Zgloszenie> Zgloszenie { get; set; } = default!;
 
     public DbSet<Polisa> Polisa { get; set; } = default!;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Klient>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Oferta>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<OfertaMarketingowa>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Polisa>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<ProduktUbezpieczeniowy>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Uzytkownik>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Wiadomosc>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Wycena>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Zadanie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<Zgloszenie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+    }
 }

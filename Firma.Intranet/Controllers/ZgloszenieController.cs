@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Firma.Data.Data;
 using Firma.Data.Data.Ubezpieczenia;
+using Firma.Intranet.Infrastructure;
 
 namespace Firma.Intranet.Controllers
 {
@@ -155,7 +156,7 @@ namespace Firma.Intranet.Controllers
             var zgloszenie = await _context.Zgloszenie.FindAsync(id);
             if (zgloszenie != null)
             {
-                _context.Zgloszenie.Remove(zgloszenie);
+                zgloszenie.MarkAsDeleted();
             }
 
             await _context.SaveChangesAsync();
