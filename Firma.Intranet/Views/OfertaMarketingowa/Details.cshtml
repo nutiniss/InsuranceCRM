@@ -1,4 +1,4 @@
-﻿@model Firma.Data.Data.Ubezpieczenia.OfertaMarketingowa
+@model Firma.Data.Data.Ubezpieczenia.OfertaMarketingowa
 
 @{
     ViewData["Title"] = "Szczegóły: Oferta marketingowa";
@@ -56,7 +56,7 @@
         </dd>
     </dl>
 </div>
-<div class="d-flex gap-2 mt-3">
+<div class="d-flex gap-2 mt-3 crm-action-bar">
     <a asp-action="Edit" asp-route-id="@Model?.IdOfertyMarketingowej" class="btn btn-primary">Edytuj</a>
     <a asp-action="Index" class="btn btn-outline-secondary">Powrót do listy</a>
 </div>

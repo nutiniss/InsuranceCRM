@@ -1,15 +1,10 @@
-﻿@model IEnumerable<Firma.Data.Data.Ubezpieczenia.Zgloszenie>
+@model IEnumerable<Firma.Data.Data.Ubezpieczenia.Zgloszenie>
 
 @{
     ViewData["Title"] = "Zgłoszenia";
 }
 
-<div class="crm-page-heading">
-    <div>
-        <p class="crm-eyebrow">Portal CRM</p>
-        <h1>Zgłoszenia</h1>
-        <p class="crm-muted mb-0">Przegląd aktywnych rekordów i szybkie akcje operacyjne.</p>
-    </div>
+<div class="crm-list-actions mb-3">
     <a asp-action="Create" class="btn btn-success crm-primary-action"><i class="bi bi-plus-circle"></i> Dodaj</a>
 </div>
 <div class="crm-table-card">

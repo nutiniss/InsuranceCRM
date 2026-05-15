@@ -123,6 +123,27 @@ namespace Firma.PortalWWW.Controllers
             });
         }
 
+        public async Task<IActionResult> Agenci()
+        {
+            var agenci = await _context.Uzytkownik
+                .AsNoTracking()
+                .Where(uzytkownik => uzytkownik.CzyAktywny
+                    && uzytkownik.Rola == "Agent")
+                .OrderBy(uzytkownik => uzytkownik.Nazwisko)
+                .ThenBy(uzytkownik => uzytkownik.Imie)
+                .ToListAsync();
+
+            return View(new ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Uzytkownik>
+            {
+                Title = "Agenci",
+                Eyebrow = "Kontakt z opiekunem",
+                Description = "Wybierz agenta, z którym chcesz porozmawiać o swojej polisie, zgłoszeniu lub nowej ofercie.",
+                SummaryLabel = "Dostępni agenci",
+                SummaryCaption = "aktywnych opiekunów klienta",
+                Items = agenci
+            });
+        }
+
         public IActionResult Privacy()
         {
             return View();

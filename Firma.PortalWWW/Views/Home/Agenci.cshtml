@@ -1,0 +1,64 @@
+@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Uzytkownik>
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">@Model.Eyebrow</span>
+            <h1 class="hero-title">@Model.Title</h1>
+            <p class="hero-lead">@Model.Description</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">@Model.SummaryLabel</span>
+                <span class="summary-value"><i class="bi bi-people" aria-hidden="true"></i> @Model.Items.Count</span>
+                <span class="summary-caption">@Model.SummaryCaption</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel">
+    <div class="client-panel-header">
+        <div>
+            <h2 class="section-title">Lista agentów</h2>
+            <p class="section-subtitle mb-0">Skontaktuj się bezpośrednio z aktywnym agentem i uzyskaj wsparcie w sprawach ubezpieczeniowych.</p>
+        </div>
+    </div>
+
+    @if (Model.Items.Any())
+    {
+        <div class="row g-4">
+            @foreach (var agent in Model.Items)
+            {
+                var imieInitial = string.IsNullOrWhiteSpace(agent.Imie) ? "?" : agent.Imie[..1];
+                var nazwiskoInitial = string.IsNullOrWhiteSpace(agent.Nazwisko) ? "" : agent.Nazwisko[..1];
+
+                <div class="col-12 col-md-6 col-xl-4">
+                    <article class="agent-contact-card h-100">
+                        <div class="agent-avatar" aria-hidden="true">
+                            @imieInitial@nazwiskoInitial
+                        </div>
+                        <div class="agent-contact-body">
+                            <span class="agent-role">@agent.Rola</span>
+                            <h3>@agent.Imie @agent.Nazwisko</h3>
+                            <p class="agent-email"><i class="bi bi-envelope" aria-hidden="true"></i> @agent.Email</p>
+                            <a class="btn btn-primary w-100" href="mailto:@agent.Email">Skontaktuj się z agentem</a>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-people empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak dostępnych agentów</h3>
+            <p class="mb-0">Lista aktywnych agentów pojawi się tutaj po uzupełnieniu danych w CRM.</p>
+        </div>
+    }
+</section>
