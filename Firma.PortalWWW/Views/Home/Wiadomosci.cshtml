@@ -1,1 +1,66 @@
-tu będą wiadomości
+@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Wiadomosc>
+
+@{
+    ViewData["Title"] = Model.Title;
+    var nieprzeczytane = Model.Items.Count(wiadomosc => !wiadomosc.CzyPrzeczytana);
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">@Model.Eyebrow</span>
+            <h1 class="hero-title">@Model.Title</h1>
+            <p class="hero-lead">@Model.Description</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">@Model.SummaryLabel</span>
+                <span class="summary-value">@nieprzeczytane</span>
+                <span class="summary-caption">@Model.SummaryCaption</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel">
+    <div class="client-panel-header">
+        <div>
+            <h2 class="section-title">Skrzynka wiadomości</h2>
+            <p class="section-subtitle mb-0">Komunikaty dotyczące polis, ofert, zgłoszeń oraz obsługi posprzedażowej.</p>
+        </div>
+    </div>
+
+    @if (Model.Items.Any())
+    {
+        <div class="message-list">
+            @foreach (var wiadomosc in Model.Items)
+            {
+                <article class="message-item @(wiadomosc.CzyPrzeczytana ? string.Empty : "unread")">
+                    <div class="message-icon" aria-hidden="true"><i class="bi bi-envelope-paper"></i></div>
+                    <div class="message-content">
+                        <div class="record-card-header mb-2">
+                            <div>
+                                <span class="record-number">@wiadomosc.Typ</span>
+                                <h3>@wiadomosc.Temat</h3>
+                            </div>
+                            <span class="status-pill">@(wiadomosc.CzyPrzeczytana ? "Przeczytana" : "Nowa")</span>
+                        </div>
+                        <p class="record-description">@wiadomosc.Tresc</p>
+                        <div class="record-meta-grid compact">
+                            <div><span>Data</span><strong>@((wiadomosc.DataWyslania ?? wiadomosc.DataUtworzenia).ToString("dd.MM.yyyy HH:mm"))</strong></div>
+                            <div><span>Nadawca</span><strong>@(wiadomosc.Uzytkownik is null ? "Centrum obsługi" : $"{wiadomosc.Uzytkownik.Imie} {wiadomosc.Uzytkownik.Nazwisko}")</strong></div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-envelope empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak wiadomości</h3>
+            <p class="mb-0">Nowe komunikaty od opiekuna i powiadomienia systemowe będą widoczne w tej skrzynce.</p>
+        </div>
+    }
+</section>

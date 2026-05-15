@@ -1,1 +1,111 @@
-tu będą moje oferty
+@model Firma.PortalWWW.Models.ClientPortalOffersViewModel
+
+@{
+    ViewData["Title"] = "Moje oferty";
+    var aktywneOferty = Model.PersonalOffers.Count(oferta => !string.Equals(oferta.Status, "Wygasła", StringComparison.OrdinalIgnoreCase)
+        && !string.Equals(oferta.Status, "Odrzucona", StringComparison.OrdinalIgnoreCase));
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">Propozycje dla klienta</span>
+            <h1 class="hero-title">Moje oferty</h1>
+            <p class="hero-lead">Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">Aktywne propozycje</span>
+                <span class="summary-value">@aktywneOferty</span>
+                <span class="summary-caption">ofert indywidualnych</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel mb-4">
+    <div class="client-panel-header">
+        <div>
+            <h2 class="section-title">Oferty indywidualne</h2>
+            <p class="section-subtitle mb-0">Propozycje przygotowane przez opiekuna na podstawie Twojego profilu i historii ochrony.</p>
+        </div>
+    </div>
+
+    @if (Model.PersonalOffers.Any())
+    {
+        <div class="row g-4">
+            @foreach (var oferta in Model.PersonalOffers)
+            {
+                <div class="col-12 col-lg-6">
+                    <article class="client-record-card h-100">
+                        <div class="record-card-header">
+                            <div>
+                                <span class="record-number">@oferta.NumerOferty</span>
+                                <h3>@(oferta.ProduktUbezpieczeniowy?.Nazwa ?? "Oferta ubezpieczeniowa")</h3>
+                            </div>
+                            <span class="status-pill">@oferta.Status</span>
+                        </div>
+                        <div class="record-meta-grid">
+                            <div><span>Przypis</span><strong>@oferta.Przypis.ToString("C")</strong></div>
+                            <div><span>Utworzono</span><strong>@oferta.DataUtworzenia.ToString("dd.MM.yyyy")</strong></div>
+                            <div><span>Ważna do</span><strong>@(oferta.DataWaznosci?.ToString("dd.MM.yyyy") ?? "Bezterminowo")</strong></div>
+                            <div><span>Opiekun</span><strong>@(oferta.Uzytkownik is null ? "—" : $"{oferta.Uzytkownik.Imie} {oferta.Uzytkownik.Nazwisko}")</strong></div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-file-earmark-text empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak ofert indywidualnych</h3>
+            <p class="mb-0">Gdy opiekun przygotuje nową propozycję, pojawi się ona w tej sekcji.</p>
+        </div>
+    }
+</section>
+
+<section class="marketing-offers-section">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
+        <div>
+            <h2 class="section-title">Aktualne komunikaty marketingowe</h2>
+            <p class="section-subtitle mb-0">Te same aktywne kafelki ofertowe, które są prezentowane na stronie startowej portalu.</p>
+        </div>
+    </div>
+
+    @if (Model.MarketingOffers.Any())
+    {
+        <div class="row g-4">
+            @foreach (var oferta in Model.MarketingOffers)
+            {
+                <div class="col-12 col-md-6 col-xl-4">
+                    <article class="card marketing-offer-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                                <span class="offer-badge">@oferta.GrupaDocelowa</span>
+                                @if (oferta.DataWaznosci.HasValue)
+                                {
+                                    <span class="offer-validity">do @oferta.DataWaznosci.Value.ToString("dd.MM.yyyy")</span>
+                                }
+                            </div>
+                            <h3 class="offer-title">@oferta.Tytul</h3>
+                            <p class="offer-text">@oferta.Tresc</p>
+                            <div class="mt-auto pt-3">
+                                <a class="btn btn-primary w-100" href="#">Jestem zainteresowany</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-megaphone empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak aktywnych komunikatów</h3>
+            <p class="mb-0">Nowe kampanie marketingowe zostaną wyświetlone po ich publikacji przez administratora.</p>
+        </div>
+    }
+</section>

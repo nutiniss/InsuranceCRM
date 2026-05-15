@@ -35,24 +35,92 @@ namespace Firma.PortalWWW.Controllers
             return View(ofertyMarketingowe);
         }
 
-        public IActionResult Zgloszenia()
+        public async Task<IActionResult> Zgloszenia()
         {
-            return View();
+            var zgloszenia = await _context.Zgloszenie
+                .AsNoTracking()
+                .Include(zgloszenie => zgloszenie.Uzytkownik)
+                .OrderByDescending(zgloszenie => zgloszenie.DataUtworzenia)
+                .Take(12)
+                .ToListAsync();
+
+            return View(new ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Zgloszenie>
+            {
+                Title = "Zgłoszenia",
+                Eyebrow = "Obsługa klienta",
+                Description = "Monitoruj zgłoszenia, statusy spraw oraz kontakt z opiekunem ubezpieczeniowym.",
+                SummaryLabel = "Otwarte sprawy",
+                SummaryCaption = "zgłoszeń widocznych w portalu",
+                Items = zgloszenia
+            });
         }
 
-        public IActionResult Wiadomosci()
+        public async Task<IActionResult> Wiadomosci()
         {
-            return View();
+            var wiadomosci = await _context.Wiadomosc
+                .AsNoTracking()
+                .Include(wiadomosc => wiadomosc.Uzytkownik)
+                .OrderByDescending(wiadomosc => wiadomosc.DataWyslania ?? wiadomosc.DataUtworzenia)
+                .Take(12)
+                .ToListAsync();
+
+            return View(new ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Wiadomosc>
+            {
+                Title = "Wiadomości",
+                Eyebrow = "Centrum komunikacji",
+                Description = "Przeglądaj wiadomości od opiekuna, powiadomienia systemowe i ważne informacje dotyczące polis.",
+                SummaryLabel = "Nieprzeczytane",
+                SummaryCaption = "wiadomości wymagających uwagi",
+                Items = wiadomosci
+            });
         }
 
-        public IActionResult MojePolisy()
+        public async Task<IActionResult> MojePolisy()
         {
-            return View();
+            var polisy = await _context.Polisa
+                .AsNoTracking()
+                .Include(polisa => polisa.ProduktUbezpieczeniowy)
+                .Include(polisa => polisa.Uzytkownik)
+                .OrderBy(polisa => polisa.KoniecOchrony)
+                .Take(12)
+                .ToListAsync();
+
+            return View(new ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Polisa>
+            {
+                Title = "Moje polisy",
+                Eyebrow = "Portfel ubezpieczeń",
+                Description = "Sprawdzaj aktywne polisy, terminy ochrony, składki oraz produkty przypisane do Twojego konta.",
+                SummaryLabel = "Aktywne polisy",
+                SummaryCaption = "polis w portfelu",
+                Items = polisy
+            });
         }
 
-        public IActionResult MojeOferty()
+        public async Task<IActionResult> MojeOferty()
         {
-            return View();
+            var teraz = DateTime.Now;
+            var oferty = await _context.Oferta
+                .AsNoTracking()
+                .Include(oferta => oferta.ProduktUbezpieczeniowy)
+                .Include(oferta => oferta.Uzytkownik)
+                .OrderByDescending(oferta => oferta.DataUtworzenia)
+                .Take(12)
+                .ToListAsync();
+
+            var ofertyMarketingowe = await _context.OfertaMarketingowa
+                .AsNoTracking()
+                .Where(oferta => oferta.CzyAktywna
+                    && (!oferta.DataPublikacji.HasValue || oferta.DataPublikacji <= teraz)
+                    && (!oferta.DataWaznosci.HasValue || oferta.DataWaznosci >= teraz))
+                .OrderByDescending(oferta => oferta.DataPublikacji ?? oferta.DataUtworzenia)
+                .Take(6)
+                .ToListAsync();
+
+            return View(new ClientPortalOffersViewModel
+            {
+                PersonalOffers = oferty,
+                MarketingOffers = ofertyMarketingowe
+            });
         }
 
         public IActionResult Privacy()

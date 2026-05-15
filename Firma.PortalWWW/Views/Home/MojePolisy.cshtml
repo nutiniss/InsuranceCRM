@@ -1,1 +1,68 @@
-tu będą moje polisy
+@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Polisa>
+
+@{
+    ViewData["Title"] = Model.Title;
+    var aktywne = Model.Items.Count(polisa => string.Equals(polisa.Status, "Aktywna", StringComparison.OrdinalIgnoreCase));
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">@Model.Eyebrow</span>
+            <h1 class="hero-title">@Model.Title</h1>
+            <p class="hero-lead">@Model.Description</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">@Model.SummaryLabel</span>
+                <span class="summary-value">@aktywne</span>
+                <span class="summary-caption">@Model.SummaryCaption</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel">
+    <div class="client-panel-header">
+        <div>
+            <h2 class="section-title">Portfel polis</h2>
+            <p class="section-subtitle mb-0">Najbliższe terminy, zakres ochrony i składki w jednym widoku klienta.</p>
+        </div>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="MojeOferty">Zobacz oferty odnowienia</a>
+    </div>
+
+    @if (Model.Items.Any())
+    {
+        <div class="row g-4">
+            @foreach (var polisa in Model.Items)
+            {
+                <div class="col-12 col-xl-4 col-md-6">
+                    <article class="client-record-card policy-card h-100">
+                        <div class="record-card-header">
+                            <div>
+                                <span class="record-number">@polisa.NumerPolisy</span>
+                                <h3>@(polisa.ProduktUbezpieczeniowy?.Nazwa ?? "Produkt ubezpieczeniowy")</h3>
+                            </div>
+                            <span class="status-pill">@polisa.Status</span>
+                        </div>
+                        <div class="policy-premium">@polisa.Skladka.ToString("C")</div>
+                        <div class="record-meta-grid">
+                            <div><span>Początek</span><strong>@polisa.PoczatekOchrony.ToString("dd.MM.yyyy")</strong></div>
+                            <div><span>Koniec</span><strong>@polisa.KoniecOchrony.ToString("dd.MM.yyyy")</strong></div>
+                            <div><span>Kategoria</span><strong>@(polisa.ProduktUbezpieczeniowy?.Kategoria ?? "—")</strong></div>
+                            <div><span>Opiekun</span><strong>@(polisa.Uzytkownik is null ? "—" : $"{polisa.Uzytkownik.Imie} {polisa.Uzytkownik.Nazwisko}")</strong></div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-shield-check empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak polis w portfelu</h3>
+            <p class="mb-0">Po wystawieniu polisy zobaczysz tutaj numer, okres ochrony i informacje o składce.</p>
+        </div>
+    }
+</section>

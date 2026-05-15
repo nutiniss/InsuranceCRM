@@ -1,1 +1,68 @@
-tu będą zgłoszenia
+@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Zgloszenie>
+
+@{
+    ViewData["Title"] = Model.Title;
+    var otwarte = Model.Items.Count(zgloszenie => !string.Equals(zgloszenie.Status, "Zamknięte", StringComparison.OrdinalIgnoreCase));
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-eyebrow">@Model.Eyebrow</span>
+            <h1 class="hero-title">@Model.Title</h1>
+            <p class="hero-lead">@Model.Description</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="hero-summary-card">
+                <span class="summary-label">@Model.SummaryLabel</span>
+                <span class="summary-value">@otwarte</span>
+                <span class="summary-caption">@Model.SummaryCaption</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel">
+    <div class="client-panel-header">
+        <div>
+            <h2 class="section-title">Lista zgłoszeń</h2>
+            <p class="section-subtitle mb-0">Ostatnie sprawy zarejestrowane w portalu oraz ich aktualny status obsługi.</p>
+        </div>
+        <a class="btn btn-primary" href="#"><i class="bi bi-plus-circle"></i> Nowe zgłoszenie</a>
+    </div>
+
+    @if (Model.Items.Any())
+    {
+        <div class="row g-4">
+            @foreach (var zgloszenie in Model.Items)
+            {
+                <div class="col-12 col-lg-6">
+                    <article class="client-record-card h-100">
+                        <div class="record-card-header">
+                            <div>
+                                <span class="record-number">@zgloszenie.NumerZgloszenia</span>
+                                <h3>@zgloszenie.Tytul</h3>
+                            </div>
+                            <span class="status-pill">@zgloszenie.Status</span>
+                        </div>
+                        <p class="record-description">@zgloszenie.Opis</p>
+                        <div class="record-meta-grid">
+                            <div><span>Typ</span><strong>@zgloszenie.Typ</strong></div>
+                            <div><span>Utworzono</span><strong>@zgloszenie.DataUtworzenia.ToString("dd.MM.yyyy")</strong></div>
+                            <div><span>Opiekun</span><strong>@(zgloszenie.Uzytkownik is null ? "W trakcie przypisania" : $"{zgloszenie.Uzytkownik.Imie} {zgloszenie.Uzytkownik.Nazwisko}")</strong></div>
+                            <div><span>Zamknięcie</span><strong>@(zgloszenie.DataZamkniecia?.ToString("dd.MM.yyyy") ?? "—")</strong></div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-offers-state text-center p-5">
+            <i class="bi bi-headset empty-offers-icon" aria-hidden="true"></i>
+            <h3>Brak zgłoszeń</h3>
+            <p class="mb-0">Po utworzeniu zgłoszenia jego status i historia obsługi pojawią się w tym miejscu.</p>
+        </div>
+    }
+</section>
