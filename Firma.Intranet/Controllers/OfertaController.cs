@@ -45,12 +45,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty, oferta.Status);
             return View(oferta);
         }
 
         // GET: Oferta/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty);
             ViewData["IdKlienta"] = new SelectList(_context.Set<Klient>(), "IdKlienta", "Email");
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.Set<ProduktUbezpieczeniowy>(), "IdProduktuUbezpieczeniowego", "Kategoria");
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email");
@@ -73,6 +76,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdKlienta"] = new SelectList(_context.Set<Klient>(), "IdKlienta", "Email", oferta.IdKlienta);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.Set<ProduktUbezpieczeniowy>(), "IdProduktuUbezpieczeniowego", "Kategoria", oferta.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", oferta.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty, oferta.Status);
             return View(oferta);
         }
 
@@ -92,6 +96,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdKlienta"] = new SelectList(_context.Set<Klient>(), "IdKlienta", "Email", oferta.IdKlienta);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.Set<ProduktUbezpieczeniowy>(), "IdProduktuUbezpieczeniowego", "Kategoria", oferta.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", oferta.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty, oferta.Status);
             return View(oferta);
         }
 
@@ -130,6 +135,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdKlienta"] = new SelectList(_context.Set<Klient>(), "IdKlienta", "Email", oferta.IdKlienta);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.Set<ProduktUbezpieczeniowy>(), "IdProduktuUbezpieczeniowego", "Kategoria", oferta.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", oferta.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty, oferta.Status);
             return View(oferta);
         }
 
@@ -151,6 +157,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "StatusyOferty", TypSlownika.StatusOferty, oferta.Status);
             return View(oferta);
         }
 

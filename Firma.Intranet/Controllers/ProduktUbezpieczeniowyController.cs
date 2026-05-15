@@ -41,12 +41,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu, produktUbezpieczeniowy.Kategoria);
             return View(produktUbezpieczeniowy);
         }
 
         // GET: ProduktUbezpieczeniowy/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu);
             return View();
         }
 
@@ -63,6 +66,7 @@ namespace Firma.Intranet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu, produktUbezpieczeniowy.Kategoria);
             return View(produktUbezpieczeniowy);
         }
 
@@ -79,6 +83,7 @@ namespace Firma.Intranet.Controllers
             {
                 return NotFound();
             }
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu, produktUbezpieczeniowy.Kategoria);
             return View(produktUbezpieczeniowy);
         }
 
@@ -114,6 +119,7 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu, produktUbezpieczeniowy.Kategoria);
             return View(produktUbezpieczeniowy);
         }
 
@@ -132,6 +138,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "KategorieProduktu", TypSlownika.KategoriaProduktu, produktUbezpieczeniowy.Kategoria);
             return View(produktUbezpieczeniowy);
         }
 

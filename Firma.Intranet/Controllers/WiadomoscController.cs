@@ -44,12 +44,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci, wiadomosc.Typ);
             return View(wiadomosc);
         }
 
         // GET: Wiadomosc/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci);
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email");
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email");
             return View();
@@ -70,6 +73,7 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", wiadomosc.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", wiadomosc.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci, wiadomosc.Typ);
             return View(wiadomosc);
         }
 
@@ -88,6 +92,7 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", wiadomosc.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", wiadomosc.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci, wiadomosc.Typ);
             return View(wiadomosc);
         }
 
@@ -125,6 +130,7 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", wiadomosc.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", wiadomosc.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci, wiadomosc.Typ);
             return View(wiadomosc);
         }
 
@@ -145,6 +151,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyWiadomosci", TypSlownika.TypWiadomosci, wiadomosc.Typ);
             return View(wiadomosc);
         }
 

@@ -35,6 +35,8 @@ public class FirmaContext : DbContext
 
     public DbSet<Polisa> Polisa { get; set; } = default!;
 
+    public DbSet<PozycjaSlownika> PozycjaSlownika { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -49,5 +51,48 @@ public class FirmaContext : DbContext
         modelBuilder.Entity<Wycena>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<Zadanie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<Zgloszenie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<PozycjaSlownika>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+
+        modelBuilder.Entity<PozycjaSlownika>()
+            .HasIndex(e => new { e.Typ, e.Wartosc })
+            .IsUnique();
+
+        modelBuilder.Entity<PozycjaSlownika>().HasData(PozycjeSlownikow());
+    }
+
+    private static PozycjaSlownika[] PozycjeSlownikow()
+    {
+        var id = 1;
+        var pozycje = new List<PozycjaSlownika>();
+
+        Add(TypSlownika.KategoriaProduktu, "Komunikacyjne", "Majątkowe", "Życiowe", "Zdrowotne", "Turystyczne", "Firmowe");
+        Add(TypSlownika.StatusOferty, "Nowa", "W przygotowaniu", "Wysłana do klienta", "Zaakceptowana", "Odrzucona", "Wygasła");
+        Add(TypSlownika.StatusPolisy, "Aktywna", "Oczekuje na start", "Wznowienie", "Zakończona", "Wypowiedziana", "Anulowana");
+        Add(TypSlownika.TypZadania, "Kontakt z klientem", "Przygotowanie oferty", "Weryfikacja dokumentów", "Obsługa zgłoszenia", "Odnowienie polisy", "Czynność administracyjna");
+        Add(TypSlownika.StatusZadania, "Nowe", "W toku", "Oczekuje na klienta", "Oczekuje na dokumenty", "Zrealizowane", "Anulowane");
+        Add(TypSlownika.TypZgloszenia, "Szkoda", "Zmiana danych", "Pytanie o polisę", "Reklamacja", "Prośba o kontakt", "Inne");
+        Add(TypSlownika.StatusZgloszenia, "Nowe", "Przyjęte", "W analizie", "Oczekuje na klienta", "Zamknięte", "Odrzucone");
+        Add(TypSlownika.TypWiadomosci, "E-mail", "SMS", "Telefon", "Notatka", "Powiadomienie systemowe");
+        Add(TypSlownika.RolaUzytkownika, "Agent", "Opiekun klienta", "Likwidator szkód", "Menedżer", "Administrator");
+        Add(TypSlownika.MetodaWyceny, "Taryfa standardowa", "Indywidualna kalkulacja", "Wycena ekspercka", "Kalkulator online", "Odnowienie na podstawie historii");
+        Add(TypSlownika.GrupaDocelowa, "Wszyscy klienci", "Nowi klienci", "Klienci indywidualni", "Klienci firmowi", "Klienci z aktywną polisą", "Klienci do odnowienia");
+
+        return pozycje.ToArray();
+
+        void Add(string typ, params string[] wartosci)
+        {
+            for (var kolejnosc = 0; kolejnosc < wartosci.Length; kolejnosc++)
+            {
+                pozycje.Add(new PozycjaSlownika
+                {
+                    IdPozycjiSlownika = id++,
+                    Typ = typ,
+                    Wartosc = wartosci[kolejnosc],
+                    Kolejnosc = kolejnosc + 1,
+                    CzyAktywna = true,
+                    StatusRekordu = RecordStatus.Active
+                });
+            }
+        }
     }
 }

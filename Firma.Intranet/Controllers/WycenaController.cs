@@ -43,12 +43,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny, wycena.MetodaWyceny);
             return View(wycena);
         }
 
         // GET: Wycena/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny);
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty");
             return View();
         }
@@ -67,6 +70,7 @@ namespace Firma.Intranet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", wycena.IdOferty);
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny, wycena.MetodaWyceny);
             return View(wycena);
         }
 
@@ -84,6 +88,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", wycena.IdOferty);
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny, wycena.MetodaWyceny);
             return View(wycena);
         }
 
@@ -120,6 +125,7 @@ namespace Firma.Intranet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", wycena.IdOferty);
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny, wycena.MetodaWyceny);
             return View(wycena);
         }
 
@@ -139,6 +145,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "MetodyWyceny", TypSlownika.MetodaWyceny, wycena.MetodaWyceny);
             return View(wycena);
         }
 
