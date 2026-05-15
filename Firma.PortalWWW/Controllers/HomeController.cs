@@ -1,19 +1,38 @@
+using Firma.Data.Data;
 using Firma.PortalWWW.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Firma.PortalWWW.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly FirmaContext _context;
+
+        public HomeController(FirmaContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return RedirectToAction(nameof(Start));
         }
 
-        public IActionResult Start()
+        public async Task<IActionResult> Start()
         {
-            return View();
+            var teraz = DateTime.Now;
+            var ofertyMarketingowe = await _context.OfertaMarketingowa
+                .AsNoTracking()
+                .Where(oferta => oferta.CzyAktywna
+                    && (!oferta.DataPublikacji.HasValue || oferta.DataPublikacji <= teraz)
+                    && (!oferta.DataWaznosci.HasValue || oferta.DataWaznosci >= teraz))
+                .OrderByDescending(oferta => oferta.DataPublikacji ?? oferta.DataUtworzenia)
+                .Take(6)
+                .ToListAsync();
+
+            return View(ofertyMarketingowe);
         }
 
         public IActionResult Zgloszenia()

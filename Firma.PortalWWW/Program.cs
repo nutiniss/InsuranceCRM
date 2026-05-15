@@ -1,4 +1,10 @@
+using Firma.Data.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<FirmaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FirmaContext")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

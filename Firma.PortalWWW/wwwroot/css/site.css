@@ -185,3 +185,125 @@ button.accept-policy {
     white-space: nowrap;
     line-height: 60px;
 }
+
+.hero-panel {
+    background: linear-gradient(135deg, #ffffff 0%, #eaf4ff 100%);
+    border: 1px solid #dcecff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(34, 58, 95, 0.08);
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    margin-bottom: 0.75rem;
+    color: #2787F1;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    color: #223a5f;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-lead {
+    color: #49647f;
+    font-size: 1.1rem;
+    max-width: 760px;
+}
+
+.hero-summary-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #d9e8f8;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: inset 0 0 0 1px rgba(39, 135, 241, 0.08);
+}
+
+.summary-label,
+.summary-caption {
+    display: block;
+    color: #6c7d90;
+    font-size: 0.95rem;
+}
+
+.summary-value {
+    display: block;
+    color: #2787F1;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0.35rem 0;
+}
+
+.section-title {
+    color: #223a5f;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.section-subtitle {
+    color: #6c7d90;
+}
+
+.marketing-offer-card {
+    border: 0;
+    border-radius: 1.25rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(34, 58, 95, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.marketing-offer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2rem rgba(34, 58, 95, 0.14);
+}
+
+.offer-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background-color: #eef6ff;
+    color: #1f6fbd;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.offer-validity {
+    color: #7a8795;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.offer-title {
+    color: #223a5f;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.offer-text {
+    color: #50677f;
+    line-height: 1.55;
+}
+
+.empty-offers-state {
+    background: #ffffff;
+    border: 1px dashed #b9d7f6;
+    border-radius: 1.25rem;
+    color: #50677f;
+}
+
+.empty-offers-icon {
+    display: block;
+    color: #2787F1;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
