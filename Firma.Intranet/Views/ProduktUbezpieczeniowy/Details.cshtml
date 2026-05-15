@@ -4,13 +4,6 @@
     ViewData["Title"] = "Szczegóły: Produkt ubezpieczeniowy";
 }
 
-<div class="crm-page-heading">
-    <div>
-        <p class="crm-eyebrow">Produkty ubezpieczeniowe</p>
-        <h1>Szczegóły: Produkt ubezpieczeniowy</h1>
-        <p class="crm-muted mb-0">Pełny podgląd danych rekordu CRM.</p>
-    </div>
-</div>
 <div class="crm-form-card">
     <dl class="row">
         <dt class = "col-sm-2">
@@ -45,7 +38,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdProduktuUbezpieczeniowego">Edytuj</a>
-    <a asp-action="Index">Powrót do listy</a>
+<div class="d-flex gap-2 mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.IdProduktuUbezpieczeniowego" class="btn btn-primary">Edytuj</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Powrót do listy</a>
 </div>
