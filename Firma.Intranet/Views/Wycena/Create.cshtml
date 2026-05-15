@@ -23,7 +23,9 @@
             </div>
             <div class="mb-3">
                 <label asp-for="MetodaWyceny" class="control-label"></label>
-                <input asp-for="MetodaWyceny" class="form-control" />
+                <select asp-for="MetodaWyceny" class="form-control" asp-items="@(new SelectList(SlownikiWyboru.MetodyWyceny))">
+                    <option value="">-- wybierz metodę wyceny --</option>
+                </select>
                 <span asp-validation-for="MetodaWyceny" class="text-danger"></span>
             </div>
             <div class="mb-3">

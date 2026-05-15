@@ -34,7 +34,9 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-control" asp-items="@(new SelectList(SlownikiWyboru.StatusyOferty))">
+                    <option value="">-- wybierz status oferty --</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="mb-3">

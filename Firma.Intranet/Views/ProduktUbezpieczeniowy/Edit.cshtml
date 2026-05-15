@@ -29,7 +29,9 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Kategoria" class="control-label"></label>
-                <input asp-for="Kategoria" class="form-control" />
+                <select asp-for="Kategoria" class="form-control" asp-items="@(new SelectList(SlownikiWyboru.KategorieProduktu))">
+                    <option value="">-- wybierz kategorię --</option>
+                </select>
                 <span asp-validation-for="Kategoria" class="text-danger"></span>
             </div>
             <div class="mb-3">
