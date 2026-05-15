@@ -47,12 +47,17 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania, zadanie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania, zadanie.Status);
             return View(zadanie);
         }
 
         // GET: Zadanie/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania);
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email");
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty");
             ViewData["IdPolisy"] = new SelectList(_context.Set<Polisa>(), "IdPolisy", "NumerPolisy");
@@ -79,6 +84,8 @@ namespace Firma.Intranet.Controllers
             ViewData["IdPolisy"] = new SelectList(_context.Set<Polisa>(), "IdPolisy", "NumerPolisy", zadanie.IdPolisy);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zadanie.IdUzytkownika);
             ViewData["IdZgloszenia"] = new SelectList(_context.Set<Zgloszenie>(), "IdZgloszenia", "NumerZgloszenia", zadanie.IdZgloszenia);
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania, zadanie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania, zadanie.Status);
             return View(zadanie);
         }
 
@@ -100,6 +107,8 @@ namespace Firma.Intranet.Controllers
             ViewData["IdPolisy"] = new SelectList(_context.Set<Polisa>(), "IdPolisy", "NumerPolisy", zadanie.IdPolisy);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zadanie.IdUzytkownika);
             ViewData["IdZgloszenia"] = new SelectList(_context.Set<Zgloszenie>(), "IdZgloszenia", "NumerZgloszenia", zadanie.IdZgloszenia);
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania, zadanie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania, zadanie.Status);
             return View(zadanie);
         }
 
@@ -140,6 +149,8 @@ namespace Firma.Intranet.Controllers
             ViewData["IdPolisy"] = new SelectList(_context.Set<Polisa>(), "IdPolisy", "NumerPolisy", zadanie.IdPolisy);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zadanie.IdUzytkownika);
             ViewData["IdZgloszenia"] = new SelectList(_context.Set<Zgloszenie>(), "IdZgloszenia", "NumerZgloszenia", zadanie.IdZgloszenia);
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania, zadanie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania, zadanie.Status);
             return View(zadanie);
         }
 
@@ -163,6 +174,8 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyZadania", TypSlownika.TypZadania, zadanie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZadania", TypSlownika.StatusZadania, zadanie.Status);
             return View(zadanie);
         }
 

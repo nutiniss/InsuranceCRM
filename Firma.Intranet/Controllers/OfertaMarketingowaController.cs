@@ -43,12 +43,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa, ofertaMarketingowa.GrupaDocelowa);
             return View(ofertaMarketingowa);
         }
 
         // GET: OfertaMarketingowa/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa);
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email");
             return View();
         }
@@ -67,6 +70,7 @@ namespace Firma.Intranet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", ofertaMarketingowa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa, ofertaMarketingowa.GrupaDocelowa);
             return View(ofertaMarketingowa);
         }
 
@@ -84,6 +88,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", ofertaMarketingowa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa, ofertaMarketingowa.GrupaDocelowa);
             return View(ofertaMarketingowa);
         }
 
@@ -120,6 +125,7 @@ namespace Firma.Intranet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdUzytkownika"] = new SelectList(_context.Set<Uzytkownik>(), "IdUzytkownika", "Email", ofertaMarketingowa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa, ofertaMarketingowa.GrupaDocelowa);
             return View(ofertaMarketingowa);
         }
 
@@ -139,6 +145,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "GrupyDocelowe", TypSlownika.GrupaDocelowa, ofertaMarketingowa.GrupaDocelowa);
             return View(ofertaMarketingowa);
         }
 

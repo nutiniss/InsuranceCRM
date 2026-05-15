@@ -41,12 +41,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika, uzytkownik.Rola);
             return View(uzytkownik);
         }
 
         // GET: Uzytkownik/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika);
             return View();
         }
 
@@ -63,6 +66,7 @@ namespace Firma.Intranet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika, uzytkownik.Rola);
             return View(uzytkownik);
         }
 
@@ -79,6 +83,7 @@ namespace Firma.Intranet.Controllers
             {
                 return NotFound();
             }
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika, uzytkownik.Rola);
             return View(uzytkownik);
         }
 
@@ -114,6 +119,7 @@ namespace Firma.Intranet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika, uzytkownik.Rola);
             return View(uzytkownik);
         }
 
@@ -132,6 +138,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "RoleUzytkownika", TypSlownika.RolaUzytkownika, uzytkownik.Rola);
             return View(uzytkownik);
         }
 

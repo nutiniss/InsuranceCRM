@@ -28,12 +28,16 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Typ" class="control-label"></label>
-                <input asp-for="Typ" class="form-control" />
+                <select asp-for="Typ" class="form-control" asp-items="ViewBag.TypyZadania">
+                    <option value="">-- wybierz typ zadania --</option>
+                </select>
                 <span asp-validation-for="Typ" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.StatusyZadania">
+                    <option value="">-- wybierz status zadania --</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="mb-3">

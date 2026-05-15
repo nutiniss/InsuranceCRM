@@ -44,12 +44,17 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia, zgloszenie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia, zgloszenie.Status);
             return View(zgloszenie);
         }
 
         // GET: Zgloszenie/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia);
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email");
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email");
             return View();
@@ -70,6 +75,8 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", zgloszenie.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zgloszenie.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia, zgloszenie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia, zgloszenie.Status);
             return View(zgloszenie);
         }
 
@@ -88,6 +95,8 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", zgloszenie.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zgloszenie.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia, zgloszenie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia, zgloszenie.Status);
             return View(zgloszenie);
         }
 
@@ -125,6 +134,8 @@ namespace Firma.Intranet.Controllers
             }
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email", zgloszenie.IdKlienta);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", zgloszenie.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia, zgloszenie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia, zgloszenie.Status);
             return View(zgloszenie);
         }
 
@@ -145,6 +156,8 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "TypyZgloszenia", TypSlownika.TypZgloszenia, zgloszenie.Typ);
+            await this.LoadSlownikAsync(_context, "StatusyZgloszenia", TypSlownika.StatusZgloszenia, zgloszenie.Status);
             return View(zgloszenie);
         }
 

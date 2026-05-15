@@ -46,12 +46,15 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy, polisa.Status);
             return View(polisa);
         }
 
         // GET: Polisa/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy);
             ViewData["IdKlienta"] = new SelectList(_context.Klient, "IdKlienta", "Email");
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty");
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.ProduktUbezpieczeniowy, "IdProduktuUbezpieczeniowego", "Kategoria");
@@ -76,6 +79,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", polisa.IdOferty);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.ProduktUbezpieczeniowy, "IdProduktuUbezpieczeniowego", "Kategoria", polisa.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", polisa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy, polisa.Status);
             return View(polisa);
         }
 
@@ -96,6 +100,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", polisa.IdOferty);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.ProduktUbezpieczeniowy, "IdProduktuUbezpieczeniowego", "Kategoria", polisa.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", polisa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy, polisa.Status);
             return View(polisa);
         }
 
@@ -135,6 +140,7 @@ namespace Firma.Intranet.Controllers
             ViewData["IdOferty"] = new SelectList(_context.Oferta, "IdOferty", "NumerOferty", polisa.IdOferty);
             ViewData["IdProduktuUbezpieczeniowego"] = new SelectList(_context.ProduktUbezpieczeniowy, "IdProduktuUbezpieczeniowego", "Kategoria", polisa.IdProduktuUbezpieczeniowego);
             ViewData["IdUzytkownika"] = new SelectList(_context.Uzytkownik, "IdUzytkownika", "Email", polisa.IdUzytkownika);
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy, polisa.Status);
             return View(polisa);
         }
 
@@ -157,6 +163,7 @@ namespace Firma.Intranet.Controllers
                 return NotFound();
             }
 
+            await this.LoadSlownikAsync(_context, "StatusyPolisy", TypSlownika.StatusPolisy, polisa.Status);
             return View(polisa);
         }
 
