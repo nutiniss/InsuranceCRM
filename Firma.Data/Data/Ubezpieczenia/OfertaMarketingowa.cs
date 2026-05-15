@@ -7,6 +7,7 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class OfertaMarketingowa : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Oferta marketingowa")]
         public int IdOfertyMarketingowej { get; set; }
 
         [Required(ErrorMessage = "Tytuł oferty marketingowej jest wymagany")]
@@ -35,7 +36,9 @@ namespace Firma.Data.Data.Ubezpieczenia
         public bool CzyAktywna { get; set; } = true;
 
         [ForeignKey("Uzytkownik")]
+        [Display(Name = "Opiekun")]
         public int IdUzytkownika { get; set; }
+        [Display(Name = "Opiekun")]
         public Uzytkownik? Uzytkownik { get; set; }
         [Display(Name = "Status rekordu")]
         public string StatusRekordu { get; set; } = RecordStatus.Active;
