@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Firma.Data.Data;
 using Firma.Data.Data.Ubezpieczenia;
+using Firma.Intranet.Infrastructure;
 
 namespace Firma.Intranet.Controllers
 {
@@ -161,7 +162,7 @@ namespace Firma.Intranet.Controllers
             var oferta = await _context.Oferta.FindAsync(id);
             if (oferta != null)
             {
-                _context.Oferta.Remove(oferta);
+                oferta.MarkAsDeleted();
             }
 
             await _context.SaveChangesAsync();

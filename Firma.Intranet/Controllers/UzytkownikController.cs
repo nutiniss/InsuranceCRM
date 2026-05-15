@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Firma.Data.Data;
 using Firma.Data.Data.Ubezpieczenia;
+using Firma.Intranet.Infrastructure;
 
 namespace Firma.Intranet.Controllers
 {
@@ -142,7 +143,7 @@ namespace Firma.Intranet.Controllers
             var uzytkownik = await _context.Uzytkownik.FindAsync(id);
             if (uzytkownik != null)
             {
-                _context.Uzytkownik.Remove(uzytkownik);
+                uzytkownik.MarkAsDeleted();
             }
 
             await _context.SaveChangesAsync();

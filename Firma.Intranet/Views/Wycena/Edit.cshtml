@@ -1,62 +1,67 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Wycena
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj: Wycena";
 }
 
-<h1>Edit</h1>
-
-<h4>Wycena</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Wyceny</p>
+        <h1>Edytuj: Wycena</h1>
+        <p class="crm-muted mb-0">Zaktualizuj dane rekordu i zapisz zmiany w systemie.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdWyceny" />
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataWyceny" class="control-label"></label>
                 <input asp-for="DataWyceny" class="form-control" />
                 <span asp-validation-for="DataWyceny" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="MetodaWyceny" class="control-label"></label>
                 <input asp-for="MetodaWyceny" class="form-control" />
                 <span asp-validation-for="MetodaWyceny" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="WartoscPrzedmiotuUbezpieczenia" class="control-label"></label>
                 <input asp-for="WartoscPrzedmiotuUbezpieczenia" class="form-control" />
                 <span asp-validation-for="WartoscPrzedmiotuUbezpieczenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="SumaUbezpieczenia" class="control-label"></label>
                 <input asp-for="SumaUbezpieczenia" class="form-control" />
                 <span asp-validation-for="SumaUbezpieczenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Skladka" class="control-label"></label>
                 <input asp-for="Skladka" class="form-control" />
                 <span asp-validation-for="Skladka" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Uwagi" class="control-label"></label>
                 <input asp-for="Uwagi" class="form-control" />
                 <span asp-validation-for="Uwagi" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdOferty" class="control-label"></label>
                 <select asp-for="IdOferty" class="form-control" asp-items="ViewBag.IdOferty"></select>
                 <span asp-validation-for="IdOferty" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

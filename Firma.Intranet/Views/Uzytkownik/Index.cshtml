@@ -1,15 +1,20 @@
 ﻿@model IEnumerable<Firma.Data.Data.Ubezpieczenia.Uzytkownik>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Użytkownicy";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Portal CRM</p>
+        <h1>Użytkownicy</h1>
+        <p class="crm-muted mb-0">Przegląd aktywnych rekordów i szybkie akcje operacyjne.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-success crm-primary-action"><i class="bi bi-plus-circle"></i> Dodaj</a>
+</div>
+<div class="crm-table-card">
+    <div class="table-responsive">
+<table class="table crm-table align-middle mb-0">
     <thead>
         <tr>
             <th>
@@ -49,11 +54,13 @@
                 @Html.DisplayFor(modelItem => item.CzyAktywny)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdUzytkownika">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdUzytkownika">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdUzytkownika">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdUzytkownika">Edytuj</a>
+                <a asp-action="Details" asp-route-id="@item.IdUzytkownika">Szczegóły</a>
+                <a asp-action="Delete" asp-route-id="@item.IdUzytkownika">Archiwizuj</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+    </div>
+</div>

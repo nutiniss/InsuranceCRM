@@ -1,72 +1,77 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Polisa
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj: Polisa";
 }
 
-<h1>Edit</h1>
-
-<h4>Polisa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Polisy</p>
+        <h1>Edytuj: Polisa</h1>
+        <p class="crm-muted mb-0">Zaktualizuj dane rekordu i zapisz zmiany w systemie.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdPolisy" />
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="NumerPolisy" class="control-label"></label>
                 <input asp-for="NumerPolisy" class="form-control" />
                 <span asp-validation-for="NumerPolisy" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="PoczatekOchrony" class="control-label"></label>
                 <input asp-for="PoczatekOchrony" class="form-control" />
                 <span asp-validation-for="PoczatekOchrony" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="KoniecOchrony" class="control-label"></label>
                 <input asp-for="KoniecOchrony" class="form-control" />
                 <span asp-validation-for="KoniecOchrony" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Skladka" class="control-label"></label>
                 <input asp-for="Skladka" class="form-control" />
                 <span asp-validation-for="Skladka" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdKlienta" class="control-label"></label>
                 <select asp-for="IdKlienta" class="form-control" asp-items="ViewBag.IdKlienta"></select>
                 <span asp-validation-for="IdKlienta" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdUzytkownika" class="control-label"></label>
                 <select asp-for="IdUzytkownika" class="form-control" asp-items="ViewBag.IdUzytkownika"></select>
                 <span asp-validation-for="IdUzytkownika" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdProduktuUbezpieczeniowego" class="control-label"></label>
                 <select asp-for="IdProduktuUbezpieczeniowego" class="form-control" asp-items="ViewBag.IdProduktuUbezpieczeniowego"></select>
                 <span asp-validation-for="IdProduktuUbezpieczeniowego" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdOferty" class="control-label"></label>
                 <select asp-for="IdOferty" class="form-control" asp-items="ViewBag.IdOferty"></select>
                 <span asp-validation-for="IdOferty" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

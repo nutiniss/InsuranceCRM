@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Firma.Data.Data.Common;
 
 namespace Firma.Data.Data.Ubezpieczenia
 {
-    public class ProduktUbezpieczeniowy
+    public class ProduktUbezpieczeniowy : ISoftDeletable
     {
         [Key]
         public int IdProduktuUbezpieczeniowego { get; set; }
@@ -21,6 +22,9 @@ namespace Firma.Data.Data.Ubezpieczenia
         [Display(Name = "Aktywny")]
         public bool CzyAktywny { get; set; } = true;
 
+
+        [Display(Name = "Status rekordu")]
+        public string StatusRekordu { get; set; } = RecordStatus.Active;
         public ICollection<Oferta> Oferty { get; set; } = new List<Oferta>();
         public ICollection<Polisa> Polisy { get; set; } = new List<Polisa>();
     }

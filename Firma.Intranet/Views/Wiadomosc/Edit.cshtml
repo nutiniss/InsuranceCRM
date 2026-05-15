@@ -1,39 +1,43 @@
 ﻿@model Firma.Data.Data.Ubezpieczenia.Wiadomosc
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj: Wiadomość";
 }
 
-<h1>Edit</h1>
-
-<h4>Wiadomosc</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="crm-page-heading">
+    <div>
+        <p class="crm-eyebrow">Wiadomości</p>
+        <h1>Edytuj: Wiadomość</h1>
+        <p class="crm-muted mb-0">Zaktualizuj dane rekordu i zapisz zmiany w systemie.</p>
+    </div>
+</div>
+<div class="crm-form-card">
+<div class="row g-3">
+    <div class="col-lg-8 col-xl-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdWiadomosci" />
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Temat" class="control-label"></label>
                 <input asp-for="Temat" class="form-control" />
                 <span asp-validation-for="Temat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Tresc" class="control-label"></label>
                 <input asp-for="Tresc" class="form-control" />
                 <span asp-validation-for="Tresc" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Typ" class="control-label"></label>
                 <input asp-for="Typ" class="form-control" />
                 <span asp-validation-for="Typ" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataUtworzenia" class="control-label"></label>
                 <input asp-for="DataUtworzenia" class="form-control" />
                 <span asp-validation-for="DataUtworzenia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="DataWyslania" class="control-label"></label>
                 <input asp-for="DataWyslania" class="form-control" />
                 <span asp-validation-for="DataWyslania" class="text-danger"></span>
@@ -43,25 +47,26 @@
                     <input class="form-check-input" asp-for="CzyPrzeczytana" /> @Html.DisplayNameFor(model => model.CzyPrzeczytana)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdKlienta" class="control-label"></label>
                 <select asp-for="IdKlienta" class="form-control" asp-items="ViewBag.IdKlienta"></select>
                 <span asp-validation-for="IdKlienta" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="IdUzytkownika" class="control-label"></label>
                 <select asp-for="IdUzytkownika" class="form-control" asp-items="ViewBag.IdUzytkownika"></select>
                 <span asp-validation-for="IdUzytkownika" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="mb-3">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

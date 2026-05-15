@@ -440,3 +440,180 @@ button.accept-policy {
         grid-template-columns: 1fr;
     }
 }
+
+/* CRM professional screens */
+.crm-page-heading {
+    align-items: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f0faf4 100%);
+    border: 1px solid #c9e5d2;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(31, 107, 67, 0.08);
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding: 1.5rem;
+}
+
+.crm-page-heading h1 {
+    color: #163f2b;
+    font-size: clamp(1.75rem, 2vw, 2.35rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+
+.crm-eyebrow {
+    color: #24864d;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+}
+
+.crm-muted {
+    color: #5b7164;
+}
+
+.crm-primary-action {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-weight: 700;
+    gap: 0.45rem;
+    padding: 0.65rem 1.1rem;
+    white-space: nowrap;
+}
+
+.crm-table-card,
+.crm-form-card {
+    background: #ffffff;
+    border: 1px solid #d9eadf;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(31, 107, 67, 0.08);
+    overflow: hidden;
+}
+
+.crm-form-card {
+    padding: 1.5rem;
+}
+
+.crm-table {
+    min-width: 960px;
+}
+
+.crm-table thead th {
+    background: #eff8f2;
+    border-bottom: 1px solid #d1e7d8;
+    color: #345844;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 1rem 0.9rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.crm-table tbody td {
+    border-color: #edf4ef;
+    color: #263a2e;
+    padding: 0.9rem;
+    vertical-align: middle;
+}
+
+.crm-table tbody tr:hover td {
+    background-color: #fbfefc;
+}
+
+.crm-table td:last-child {
+    min-width: 210px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.crm-table td:last-child a {
+    border: 1px solid #cfe6d6;
+    border-radius: 999px;
+    color: #23643d;
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin: 0.1rem;
+    padding: 0.35rem 0.65rem;
+    text-decoration: none;
+}
+
+.crm-table td:last-child a:hover,
+.crm-table td:last-child a:focus {
+    background: #e8f4ec;
+    border-color: #91cba2;
+    color: #17492d;
+}
+
+.crm-form-card label,
+.crm-form-card .control-label {
+    color: #2d513d;
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.crm-form-card .form-control,
+.crm-form-card .form-select,
+.crm-form-card select {
+    border-color: #cfe1d5;
+    border-radius: 12px;
+    min-height: 44px;
+}
+
+.crm-form-card .btn-primary,
+.crm-form-card .btn-danger {
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.65rem 1.2rem;
+}
+
+.crm-form-card .btn-primary {
+    background-color: #1f7a44;
+    border-color: #1f7a44;
+}
+
+.crm-form-card .btn-primary:hover {
+    background-color: #196337;
+    border-color: #196337;
+}
+
+.crm-form-card dl.row {
+    margin-bottom: 1.25rem;
+}
+
+.crm-form-card dt {
+    color: #547160;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.crm-form-card dd {
+    color: #21372b;
+    font-weight: 600;
+}
+
+main > div:not(.crm-page-heading):not(.crm-form-card):not(.crm-table-card) > a[asp-action="Index"],
+main a[href$="/Index"] {
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .crm-page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .crm-primary-action {
+        justify-content: center;
+        width: 100%;
+    }
+}
