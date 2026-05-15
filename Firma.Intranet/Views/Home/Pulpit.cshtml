@@ -9,37 +9,28 @@
 }
 
 <section class="agent-dashboard">
-    <div class="crm-page-heading">
-        <div>
-            <p class="crm-eyebrow">Portal agenta</p>
-            <h1>Pulpit CRM</h1>
-            <p class="crm-muted mb-0">Najważniejsze wskaźniki, skróty do procesów i bieżąca obsługa portfela klientów.</p>
-        </div>
-        <a class="btn btn-success crm-primary-action" asp-controller="Klient" asp-action="Create"><i class="bi bi-person-plus"></i> Nowy klient</a>
-    </div>
-
     <div class="stats-grid">
-        <article class="stat-card">
+        <article class="stat-card stat-card-link" tabindex="0" role="link" aria-label="Przejdź do listy klientów" data-url="@Url.Action("Index", "Klient")">
             <h4>Klienci <i class="bi bi-people"></i></h4>
             <div class="stat-rows two-columns">
                 <div><span>Aktywni</span><strong>@klienci</strong></div>
-                <div><span>Nowy rekord</span><a asp-controller="Klient" asp-action="Create">Dodaj</a></div>
+                <div class="stat-action-cell"><a class="btn btn-success stat-action-btn" asp-controller="Klient" asp-action="Create">Dodaj</a></div>
             </div>
         </article>
 
-        <article class="stat-card">
+        <article class="stat-card stat-card-link" tabindex="0" role="link" aria-label="Przejdź do listy polis" data-url="@Url.Action("Index", "Polisa")">
             <h4>Polisy <i class="bi bi-shield-check"></i></h4>
             <div class="stat-rows two-columns">
                 <div><span>W portfelu</span><strong>@polisy</strong></div>
-                <div><span>Lista</span><a asp-controller="Polisa" asp-action="Index">Otwórz</a></div>
+                <div class="stat-action-cell"><a class="btn btn-success stat-action-btn" asp-controller="Polisa" asp-action="Create">Dodaj</a></div>
             </div>
         </article>
 
-        <article class="stat-card">
+        <article class="stat-card stat-card-link" tabindex="0" role="link" aria-label="Przejdź do listy ofert" data-url="@Url.Action("Index", "Oferta")">
             <h4>Oferty <i class="bi bi-file-earmark-text"></i></h4>
             <div class="stat-rows two-columns">
                 <div><span>Aktywne</span><strong>@oferty</strong></div>
-                <div><span>Nowa oferta</span><a asp-controller="Oferta" asp-action="Create">Dodaj</a></div>
+                <div class="stat-action-cell"><a class="btn btn-success stat-action-btn" asp-controller="Oferta" asp-action="Create">Dodaj</a></div>
             </div>
         </article>
 
