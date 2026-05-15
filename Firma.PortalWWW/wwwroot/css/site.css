@@ -307,3 +307,176 @@ button.accept-policy {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
+
+.client-page-hero .summary-value i {
+    font-size: 2.45rem;
+}
+
+.client-panel {
+    background: #ffffff;
+    border: 1px solid #e1ebf5;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(34, 58, 95, 0.06);
+}
+
+.client-panel-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.client-record-card,
+.message-item,
+.privacy-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #dce8f5;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(34, 58, 95, 0.05);
+}
+
+.record-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.record-card-header h3 {
+    color: #223a5f;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0.25rem 0 0;
+}
+
+.record-number {
+    color: #2787F1;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: #eaf4ff;
+    color: #1f6fbd;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    white-space: nowrap;
+}
+
+.record-description {
+    color: #50677f;
+    margin: 1rem 0;
+    line-height: 1.55;
+}
+
+.record-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.record-meta-grid.compact {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.record-meta-grid div {
+    background: #ffffff;
+    border: 1px solid #edf3fa;
+    border-radius: 0.85rem;
+    padding: 0.75rem;
+}
+
+.record-meta-grid span {
+    display: block;
+    color: #7a8795;
+    font-size: 0.78rem;
+    margin-bottom: 0.2rem;
+}
+
+.record-meta-grid strong {
+    color: #2e4a6b;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.policy-premium {
+    color: #223a5f;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 1rem 0;
+}
+
+.message-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.message-item {
+    display: flex;
+    gap: 1rem;
+}
+
+.message-item.unread {
+    border-color: #9dccfb;
+    box-shadow: 0 0.75rem 1.5rem rgba(39, 135, 241, 0.12);
+}
+
+.message-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #eaf4ff;
+    color: #2787F1;
+    font-size: 1.3rem;
+}
+
+.message-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.privacy-card {
+    height: 100%;
+}
+
+.privacy-card i {
+    color: #2787F1;
+    font-size: 2rem;
+}
+
+.privacy-card h3 {
+    color: #223a5f;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 1rem 0 0.5rem;
+}
+
+.privacy-card p {
+    color: #50677f;
+    margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+    .record-card-header,
+    .message-item {
+        flex-direction: column;
+    }
+
+    .record-meta-grid {
+        grid-template-columns: 1fr;
+    }
+}
