@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Firma.Data.Data.Ubezpieczenia;
+
+namespace Firma.Data.Data;
 
 public class FirmaContext : DbContext
 {
