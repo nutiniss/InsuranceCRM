@@ -7,6 +7,7 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class Zgloszenie : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Zgłoszenie")]
         public int IdZgloszenia { get; set; }
 
         [Required(ErrorMessage = "Numer zgłoszenia jest wymagany")]
@@ -18,12 +19,15 @@ namespace Firma.Data.Data.Ubezpieczenia
         public required string Tytul { get; set; }
 
         [Required(ErrorMessage = "Opis zgłoszenia jest wymagany")]
+        [Display(Name = "Opis")]
         public required string Opis { get; set; }
 
         [Required(ErrorMessage = "Typ zgłoszenia jest wymagany")]
+        [Display(Name = "Typ zgłoszenia")]
         public required string Typ { get; set; }
 
         [Required(ErrorMessage = "Status zgłoszenia jest wymagany")]
+        [Display(Name = "Status zgłoszenia")]
         public required string Status { get; set; }
 
         [Required(ErrorMessage = "Data utworzenia zgłoszenia jest wymagana")]
@@ -34,11 +38,15 @@ namespace Firma.Data.Data.Ubezpieczenia
         public DateTime? DataZamkniecia { get; set; }
 
         [ForeignKey("Klient")]
+        [Display(Name = "Klient")]
         public int IdKlienta { get; set; }
+        [Display(Name = "Klient")]
         public Klient? Klient { get; set; }
 
         [ForeignKey("Uzytkownik")]
+        [Display(Name = "Opiekun")]
         public int? IdUzytkownika { get; set; }
+        [Display(Name = "Opiekun")]
         public Uzytkownik? Uzytkownik { get; set; }
 
 

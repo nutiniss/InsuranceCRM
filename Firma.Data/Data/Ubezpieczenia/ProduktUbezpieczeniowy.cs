@@ -6,17 +6,22 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class ProduktUbezpieczeniowy : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Produkt")]
         public int IdProduktuUbezpieczeniowego { get; set; }
 
         [Required(ErrorMessage = "Kod produktu jest wymagany")]
+        [Display(Name = "Kod produktu")]
         public required string Kod { get; set; }
 
         [Required(ErrorMessage = "Nazwa produktu jest wymagana")]
+        [Display(Name = "Nazwa produktu")]
         public required string Nazwa { get; set; }
 
         [Required(ErrorMessage = "Kategoria produktu jest wymagana")]
+        [Display(Name = "Kategoria")]
         public required string Kategoria { get; set; }
 
+        [Display(Name = "Opis")]
         public string Opis { get; set; } = string.Empty;
 
         [Display(Name = "Aktywny")]

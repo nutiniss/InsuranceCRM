@@ -6,6 +6,7 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class Klient : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Klient")]
         public int IdKlienta { get; set; }
 
         [Required(ErrorMessage = "Imię klienta jest wymagane")]
@@ -13,6 +14,7 @@ namespace Firma.Data.Data.Ubezpieczenia
         public required string Imie { get; set; }
 
         [Required(ErrorMessage = "Nazwisko klienta jest wymagane")]
+        [Display(Name = "Nazwisko")]
         public required string Nazwisko { get; set; }
 
         [Display(Name = "PESEL")]
@@ -31,6 +33,7 @@ namespace Firma.Data.Data.Ubezpieczenia
 
         [Required(ErrorMessage = "Numer telefonu jest wymagany")]
         [Phone(ErrorMessage = "Podaj poprawny numer telefonu")]
+        [Display(Name = "Telefon")]
         public required string Telefon { get; set; }
 
         [Display(Name = "Data urodzenia")]

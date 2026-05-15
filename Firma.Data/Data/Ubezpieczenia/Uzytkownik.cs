@@ -6,6 +6,7 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class Uzytkownik : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Opiekun")]
         public int IdUzytkownika { get; set; }
 
         [Required(ErrorMessage = "Imię użytkownika jest wymagane")]
@@ -13,6 +14,7 @@ namespace Firma.Data.Data.Ubezpieczenia
         public required string Imie { get; set; }
 
         [Required(ErrorMessage = "Nazwisko użytkownika jest wymagane")]
+        [Display(Name = "Nazwisko")]
         public required string Nazwisko { get; set; }
 
         [Required(ErrorMessage = "Adres e-mail jest wymagany")]
@@ -21,6 +23,7 @@ namespace Firma.Data.Data.Ubezpieczenia
         public required string Email { get; set; }
 
         [Required(ErrorMessage = "Rola użytkownika jest wymagana")]
+        [Display(Name = "Rola")]
         public required string Rola { get; set; }
 
         [Display(Name = "Aktywny")]

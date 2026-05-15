@@ -7,6 +7,7 @@ namespace Firma.Data.Data.Ubezpieczenia
     public class Wycena : ISoftDeletable
     {
         [Key]
+        [Display(Name = "Wycena")]
         public int IdWyceny { get; set; }
 
         [Required(ErrorMessage = "Data wyceny jest wymagana")]
@@ -32,10 +33,13 @@ namespace Firma.Data.Data.Ubezpieczenia
         [Display(Name = "Składka")]
         public decimal Skladka { get; set; }
 
+        [Display(Name = "Uwagi")]
         public string Uwagi { get; set; } = string.Empty;
 
         [ForeignKey("Oferta")]
+        [Display(Name = "Oferta")]
         public int IdOferty { get; set; }
+        [Display(Name = "Oferta")]
         public Oferta? Oferta { get; set; }
         [Display(Name = "Status rekordu")]
         public string StatusRekordu { get; set; } = RecordStatus.Active;
