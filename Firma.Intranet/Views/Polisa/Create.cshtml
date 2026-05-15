@@ -1,0 +1,69 @@
+﻿@model Firma.Data.Data.Ubezpieczenia.Polisa
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Polisa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumerPolisy" class="control-label"></label>
+                <input asp-for="NumerPolisy" class="form-control" />
+                <span asp-validation-for="NumerPolisy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoczatekOchrony" class="control-label"></label>
+                <input asp-for="PoczatekOchrony" class="form-control" />
+                <span asp-validation-for="PoczatekOchrony" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoniecOchrony" class="control-label"></label>
+                <input asp-for="KoniecOchrony" class="form-control" />
+                <span asp-validation-for="KoniecOchrony" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skladka" class="control-label"></label>
+                <input asp-for="Skladka" class="form-control" />
+                <span asp-validation-for="Skladka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdKlienta" class="control-label"></label>
+                <select asp-for="IdKlienta" class ="form-control" asp-items="ViewBag.IdKlienta"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUzytkownika" class="control-label"></label>
+                <select asp-for="IdUzytkownika" class ="form-control" asp-items="ViewBag.IdUzytkownika"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdProduktuUbezpieczeniowego" class="control-label"></label>
+                <select asp-for="IdProduktuUbezpieczeniowego" class ="form-control" asp-items="ViewBag.IdProduktuUbezpieczeniowego"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdOferty" class="control-label"></label>
+                <select asp-for="IdOferty" class ="form-control" asp-items="ViewBag.IdOferty"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

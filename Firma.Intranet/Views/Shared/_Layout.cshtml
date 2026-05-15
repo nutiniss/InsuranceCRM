@@ -53,7 +53,7 @@
                     <li class="nav-item"><a class="nav-link @(isObslugaActive ? "active" : "")" asp-controller="Home" asp-action="Obsluga">Obsługa</a></li>
                     <li class="nav-item"><a class="nav-link @(currentController == "Klient" ? "active" : "")" asp-controller="Klient" asp-action="Index">Klienci</a></li>
                     <li class="nav-item"><a class="nav-link @(currentController == "Wiadomosc" ? "active" : "")" asp-controller="Wiadomosc" asp-action="Wiadomosci">Wiadomości</a></li>
-                    <li class="nav-item"><a class="nav-link @(currentController == "Home" && currentAction == "Polisy" ? "active" : "")" asp-controller="Home" asp-action="Polisy">Polisy</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentController == "Polisa" ? "active" : "")" asp-controller="Polisa" asp-action="Index">Polisy</a></li>
                     <li class="nav-item"><a class="nav-link @(currentController == "Oferta" ? "active" : "")" asp-controller="Oferta" asp-action="Index">Oferty</a></li>
                     <li class="nav-item"><a class="nav-link @(isAdministracjaActive ? "active" : "")" asp-controller="Home" asp-action="Administracja">Administracja</a></li>
                 </ul>

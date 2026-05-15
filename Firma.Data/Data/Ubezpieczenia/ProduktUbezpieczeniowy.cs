@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Firma.Intranet.Models.Ubezpieczenia
+namespace Firma.Data.Data.Ubezpieczenia
 {
     public class ProduktUbezpieczeniowy
     {

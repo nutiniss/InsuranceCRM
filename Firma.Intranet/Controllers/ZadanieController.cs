@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Firma.Intranet.Models.Ubezpieczenia;
+using Firma.Data.Data.Ubezpieczenia;
 
 namespace Firma.Intranet.Controllers
 {

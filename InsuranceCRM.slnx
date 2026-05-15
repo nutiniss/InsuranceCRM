@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Firma.Data/Firma.Data.csproj" Id="a13c2eb7-9fd1-40d8-9175-9f936488d93f" />
   <Project Path="Firma.Intranet/Firma.Intranet.csproj" />
   <Project Path="Firma.PortalWWW/Firma.PortalWWW.csproj" />
 </Solution>

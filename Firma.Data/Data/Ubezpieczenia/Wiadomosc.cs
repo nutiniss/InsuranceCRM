@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Firma.Intranet.Models.Ubezpieczenia
+namespace Firma.Data.Data.Ubezpieczenia
 {
     public class Wiadomosc
     {
