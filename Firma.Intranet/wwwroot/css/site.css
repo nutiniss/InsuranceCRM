@@ -240,6 +240,31 @@ body {
     box-shadow: 0 2px 8px rgba(35, 92, 58, 0.06);
 }
 
+
+.stat-card-link {
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card-link:hover,
+.stat-card-link:focus {
+    border-color: #2ba84a;
+    box-shadow: 0 10px 24px rgba(35, 92, 58, 0.14);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.stat-action-cell {
+    justify-content: center;
+}
+
+.stat-action-btn {
+    align-self: center;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+}
+
 .stat-card h4 {
     color: #205e3b;
     font-size: 1.35rem;
