@@ -22,6 +22,60 @@ namespace Firma.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Firma.Data.Data.CMS.TekstPortalu", b =>
+                {
+                    b.Property<int>("IdTekstuPortalu")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTekstuPortalu"));
+
+                    b.Property<bool>("CzyAktywny")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DataModyfikacji")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUtworzenia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Klucz")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<int>("Kolejnosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StatusRekordu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tresc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Tytul")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("IdTekstuPortalu");
+
+                    b.HasIndex("Klucz")
+                        .IsUnique();
+
+                    b.ToTable("TekstPortalu");
+
+                    b.HasData(
+                        new { IdTekstuPortalu = 1, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.start.hero", Kolejnosc = 1, StatusRekordu = "Aktywny", Tresc = "Sprawdzaj polisy, dodawaj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez agentów.", Tytul = "Witaj w swoim centrum ubezpieczeń" },
+                        new { IdTekstuPortalu = 2, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.zgloszenia.hero", Kolejnosc = 2, StatusRekordu = "Aktywny", Tresc = "Monitoruj zgłoszenia, statusy spraw oraz kontakt z opiekunem ubezpieczeniowym.", Tytul = "Zgłoszenia" },
+                        new { IdTekstuPortalu = 3, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.wiadomosci.hero", Kolejnosc = 3, StatusRekordu = "Aktywny", Tresc = "Przeglądaj wiadomości od opiekuna, powiadomienia systemowe i ważne informacje dotyczące polis.", Tytul = "Wiadomości" },
+                        new { IdTekstuPortalu = 4, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.polisy.hero", Kolejnosc = 4, StatusRekordu = "Aktywny", Tresc = "Sprawdzaj aktywne polisy, terminy ochrony, składki oraz produkty przypisane do Twojego konta.", Tytul = "Moje polisy" },
+                        new { IdTekstuPortalu = 5, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.oferty.hero", Kolejnosc = 5, StatusRekordu = "Aktywny", Tresc = "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.", Tytul = "Moje oferty" },
+                        new { IdTekstuPortalu = 6, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Klucz = "portal.agenci.hero", Kolejnosc = 6, StatusRekordu = "Aktywny", Tresc = "Wybierz agenta, z którym chcesz porozmawiać o swojej polisie, zgłoszeniu lub nowej ofercie.", Tytul = "Agenci" });
+                });
+
             modelBuilder.Entity("Firma.Data.Data.Ubezpieczenia.Klient", b =>
                 {
                     b.Property<int>("IdKlienta")
