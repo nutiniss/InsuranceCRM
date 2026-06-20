@@ -2,16 +2,15 @@
 
 @{
     ViewData["Title"] = "Start";
-    var heroTekst = ViewBag.HeroTekst as Firma.Data.Data.CMS.TekstPortalu;
 }
 
 <section class="hero-panel mb-4">
     <div class="row align-items-center g-4">
         <div class="col-lg-8">
             <span class="hero-eyebrow">Portal klienta</span>
-            <h1 class="hero-title">@(heroTekst?.Tytul ?? "Witaj w swoim centrum ubezpieczeń")</h1>
+            <h1 class="hero-title">Witaj w swoim centrum ubezpieczeń</h1>
             <p class="hero-lead">
-                @(heroTekst?.Tresc ?? "Sprawdzaj polisy, dodawaj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez agentów.")
+                Sprawdzaj polisy, dodawaj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez agentów.
             </p>
         </div>
         @* <div class="col-lg-4">
