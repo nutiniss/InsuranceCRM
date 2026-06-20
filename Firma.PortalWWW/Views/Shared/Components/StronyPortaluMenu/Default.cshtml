@@ -1,0 +1,10 @@
+@model IEnumerable<Firma.Data.Data.CMS.StronaPortalu>
+@{
+    var aktywnySlug = ViewBag.AktywnySlug as string;
+}
+@foreach (var strona in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link @(aktywnySlug == strona.Slug ? "active" : "")" asp-controller="Home" asp-action="Strona" asp-route-slug="@strona.Slug">@strona.TytulMenu</a>
+    </li>
+}

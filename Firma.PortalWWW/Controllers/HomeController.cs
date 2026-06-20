@@ -144,6 +144,25 @@ namespace Firma.PortalWWW.Controllers
             });
         }
 
+        public async Task<IActionResult> Strona(string slug)
+        {
+            if (string.IsNullOrWhiteSpace(slug))
+            {
+                return NotFound();
+            }
+
+            var strona = await _context.StronaPortalu
+                .AsNoTracking()
+                .FirstOrDefaultAsync(strona => strona.Slug == slug && strona.CzyAktywna);
+
+            if (strona == null)
+            {
+                return NotFound();
+            }
+
+            return View(strona);
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Firma.Data.Data.CMS;
 using Firma.Data.Data.Common;
 using Firma.Data.Data.Ubezpieczenia;
 
@@ -37,6 +38,8 @@ public class FirmaContext : DbContext
 
     public DbSet<PozycjaSlownika> PozycjaSlownika { get; set; } = default!;
 
+    public DbSet<StronaPortalu> StronaPortalu { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -52,12 +55,53 @@ public class FirmaContext : DbContext
         modelBuilder.Entity<Zadanie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<Zgloszenie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<PozycjaSlownika>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
+        modelBuilder.Entity<StronaPortalu>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
 
         modelBuilder.Entity<PozycjaSlownika>()
             .HasIndex(e => new { e.Typ, e.Wartosc })
             .IsUnique();
 
+        modelBuilder.Entity<StronaPortalu>()
+            .HasIndex(e => e.Slug)
+            .IsUnique();
+
         modelBuilder.Entity<PozycjaSlownika>().HasData(PozycjeSlownikow());
+        modelBuilder.Entity<StronaPortalu>().HasData(StronyPortalu());
+    }
+
+    private static StronaPortalu[] StronyPortalu()
+    {
+        return
+        [
+            new StronaPortalu
+            {
+                IdStronyPortalu = 1,
+                Slug = "jak-zglosic-szkode",
+                TytulMenu = "Zgłoszenie szkody",
+                Tytul = "Jak zgłosić szkodę?",
+                NaglowekPomocniczy = "Instrukcje dla klientów",
+                Tresc = "Opisz zdarzenie, dołącz dokumenty i śledź status sprawy w zakładce Zgłoszenia. Po przyjęciu zgłoszenia opiekun skontaktuje się z Tobą z kolejnymi krokami.",
+                Kolejnosc = 1,
+                CzyWidocznaWMenu = true,
+                CzyAktywna = true,
+                DataUtworzenia = new DateTime(2026, 6, 20),
+                StatusRekordu = RecordStatus.Active
+            },
+            new StronaPortalu
+            {
+                IdStronyPortalu = 2,
+                Slug = "kontakt-z-agentem",
+                TytulMenu = "Kontakt",
+                Tytul = "Kontakt z agentem",
+                NaglowekPomocniczy = "Wsparcie w portalu klienta",
+                Tresc = "Wybierz opiekuna w zakładce Agenci albo wyślij wiadomość z portalu. Agent pomoże w sprawach polis, ofert, zgłoszeń oraz odnowień.",
+                Kolejnosc = 2,
+                CzyWidocznaWMenu = true,
+                CzyAktywna = true,
+                DataUtworzenia = new DateTime(2026, 6, 20),
+                StatusRekordu = RecordStatus.Active
+            }
+        ];
     }
 
     private static PozycjaSlownika[] PozycjeSlownikow()
