@@ -41,7 +41,7 @@ public class AccountController : Controller
 
         if (user is null || model.Password != DemoPassword)
         {
-            ModelState.AddModelError(string.Empty, "Nieprawidłowy e-mail lub hasło. W wersji demonstracyjnej hasło to: admin.");
+            ModelState.AddModelError(string.Empty, "Nieprawidłowy e-mail lub hasło.");
             return View(model);
         }
 

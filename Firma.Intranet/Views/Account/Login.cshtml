@@ -22,11 +22,10 @@
             </div>
             <div>
                 <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" placeholder="Hasło demonstracyjne: admin" />
+                <input asp-for="Password" class="form-control" placeholder="hasło" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-success btn-lg w-100">Zaloguj</button>
-            <p class="login-hint mb-0">Wersja edukacyjna: konto musi istnieć w tabeli użytkowników, a hasło demonstracyjne to <strong>admin</strong>.</p>
         </form>
     </div>
 </section>
