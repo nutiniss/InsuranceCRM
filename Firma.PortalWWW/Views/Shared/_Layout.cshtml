@@ -38,10 +38,7 @@
 
         <nav class="client-navbar border-bottom">
             <div class="container-fluid px-4">
-                @{
-                    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-                    var activeCmsSlug = ViewContext.RouteData.Values["slug"]?.ToString();
-                }
+                @{ var currentAction = ViewContext.RouteData.Values["action"]?.ToString(); }
                 <ul class="nav nav-tabs border-0 gap-2">
                     <li class="nav-item"><a class="nav-link @(currentAction == "Start" ? "active" : "")" asp-controller="Home" asp-action="Start">Start</a></li>
                     <li class="nav-item"><a class="nav-link @(currentAction == "Zgloszenia" ? "active" : "")" asp-controller="Home" asp-action="Zgloszenia">Zgłoszenia</a></li>
@@ -49,7 +46,6 @@
                     <li class="nav-item"><a class="nav-link @(currentAction == "MojePolisy" ? "active" : "")" asp-controller="Home" asp-action="MojePolisy">Moje polisy</a></li>
                     <li class="nav-item"><a class="nav-link @(currentAction == "MojeOferty" ? "active" : "")" asp-controller="Home" asp-action="MojeOferty">Moje oferty</a></li>
                     <li class="nav-item"><a class="nav-link @(currentAction == "Agenci" ? "active" : "")" asp-controller="Home" asp-action="Agenci">Agenci</a></li>
-                    @await Component.InvokeAsync("StronyPortaluMenu", new { aktywnySlug = activeCmsSlug })
                 </ul>
             </div>
         </nav>
