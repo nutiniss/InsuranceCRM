@@ -1,8 +1,7 @@
 @model Firma.PortalWWW.Models.ClientPortalOffersViewModel
 
 @{
-    var heroTekst = ViewBag.HeroTekst as Firma.Data.Data.CMS.TekstPortalu;
-    ViewData["Title"] = heroTekst?.Tytul ?? "Moje oferty";
+    ViewData["Title"] = "Moje oferty";
     var aktywneOferty = Model.PersonalOffers.Count(oferta => !string.Equals(oferta.Status, "Wygasła", StringComparison.OrdinalIgnoreCase)
         && !string.Equals(oferta.Status, "Odrzucona", StringComparison.OrdinalIgnoreCase));
 }
@@ -11,8 +10,8 @@
     <div class="row align-items-center g-4">
         <div class="col-lg-8">
             <span class="hero-eyebrow">Propozycje dla klienta</span>
-            <h1 class="hero-title">@(heroTekst?.Tytul ?? "Moje oferty")</h1>
-            <p class="hero-lead">@(heroTekst?.Tresc ?? "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.")</p>
+            <h1 class="hero-title">Moje oferty</h1>
+            <p class="hero-lead">Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.</p>
         </div>
         <div class="col-lg-4">
             <div class="hero-summary-card">
