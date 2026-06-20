@@ -16,7 +16,7 @@ public class NotificationsViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var unreadMessages = await _context.Wiadomosc.CountAsync(w => !w.CzyPrzeczytana);
+        var unreadMessages = await _context.Wiadomosc.CountAsync(w => !w.CzyPrzeczytana && w.Typ == "Wiadomość klienta");
         var newTickets = await _context.Zgloszenie.CountAsync(z => z.Status == "Nowe");
 
         var items = new List<NotificationItemViewModel>();
