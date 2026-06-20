@@ -1,0 +1,10 @@
+@model Firma.Data.Data.CMS.StronaPortalu
+@{
+    ViewData["Title"] = "Archiwizuj stronę portalu";
+}
+<div class="alert alert-warning">Czy na pewno chcesz zarchiwizować stronę <strong>@Model.Tytul</strong>? Strona przestanie być widoczna w portalu klienta.</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdStronyPortalu" />
+    <input type="submit" value="Archiwizuj" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-outline-secondary">Powrót do listy</a>
+</form>

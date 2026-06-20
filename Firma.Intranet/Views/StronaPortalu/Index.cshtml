@@ -1,0 +1,30 @@
+@model IEnumerable<Firma.Data.Data.CMS.StronaPortalu>
+@{
+    ViewData["Title"] = "Strony portalu";
+}
+<div class="crm-table-card">
+    <div class="table-responsive">
+        <table class="table crm-table align-middle mb-0">
+            <thead><tr><th>Tytuł w menu</th><th>Adres</th><th>Tytuł</th><th>Kolejność</th><th>Menu</th><th>Aktywna</th><th></th></tr></thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TytulMenu</td>
+                    <td><code>@item.Slug</code></td>
+                    <td>@item.Tytul</td>
+                    <td>@item.Kolejnosc</td>
+                    <td>@Html.DisplayFor(_ => item.CzyWidocznaWMenu)</td>
+                    <td>@Html.DisplayFor(_ => item.CzyAktywna)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdStronyPortalu">Edytuj</a>
+                        <a asp-action="Details" asp-route-id="@item.IdStronyPortalu">Szczegóły</a>
+                        <a asp-action="Delete" asp-route-id="@item.IdStronyPortalu">Archiwizuj</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="mt-3"><a asp-action="Create" class="btn btn-success crm-primary-action"><i class="bi bi-plus-circle"></i> Dodaj</a></div>

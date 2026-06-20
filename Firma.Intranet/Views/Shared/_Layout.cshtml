@@ -46,7 +46,8 @@
                         || currentController == "Zgloszenie";
                     var isAdministracjaActive = (currentController == "Home" && currentAction == "Administracja")
                         || currentController == "Uzytkownik"
-                        || currentController == "OfertaMarketingowa";
+                        || currentController == "OfertaMarketingowa"
+                        || currentController == "StronaPortalu";
                 }
                 <ul class="nav nav-tabs border-0 gap-2">
                     <li class="nav-item"><a class="nav-link @(currentController == "Home" && currentAction == "Pulpit" ? "active" : "")" asp-controller="Home" asp-action="Pulpit">Pulpit</a></li>
@@ -56,6 +57,7 @@
                     <li class="nav-item"><a class="nav-link @(currentController == "Polisa" ? "active" : "")" asp-controller="Polisa" asp-action="Index">Polisy</a></li>
                     <li class="nav-item"><a class="nav-link @(currentController == "Oferta" ? "active" : "")" asp-controller="Oferta" asp-action="Index">Oferty</a></li>
                     <li class="nav-item"><a class="nav-link @(isAdministracjaActive ? "active" : "")" asp-controller="Home" asp-action="Administracja">Administracja</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentController == "StronaPortalu" ? "active" : "")" asp-controller="StronaPortalu" asp-action="Index">Strony portalu</a></li>
                 </ul>
             </div>
         </nav>
