@@ -1,4 +1,4 @@
-@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Wiadomosc>
+@model Firma.PortalWWW.Models.ClientPortalMessagesViewModel
 
 @{
     ViewData["Title"] = Model.Title;
@@ -27,6 +27,43 @@
         <div>
             <h2 class="section-title">Skrzynka wiadomości</h2>
         </div>
+    </div>
+
+
+    @if (TempData["PortalSuccess"] is string success)
+    {
+        <div class="alert alert-success" role="alert">@success</div>
+    }
+    @if (TempData["PortalError"] is string error)
+    {
+        <div class="alert alert-danger" role="alert">@error</div>
+    }
+
+    <div class="client-form-card mb-4">
+        <h3 class="h5 mb-3">Napisz do agenta</h3>
+        <form asp-action="WyslijWiadomosc" method="post" class="row g-3">
+            @Html.AntiForgeryToken()
+            <div class="col-md-4">
+                <label asp-for="NewMessage.IdUzytkownika" class="form-label"></label>
+                <select asp-for="NewMessage.IdUzytkownika" class="form-select" name="IdUzytkownika">
+                    @foreach (var agent in Model.Agents)
+                    {
+                        <option value="@agent.IdUzytkownika">@agent.Imie @agent.Nazwisko</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-8">
+                <label asp-for="NewMessage.Temat" class="form-label"></label>
+                <input asp-for="NewMessage.Temat" class="form-control" name="Temat" placeholder="Np. Pytanie o odnowienie polisy" />
+            </div>
+            <div class="col-12">
+                <label asp-for="NewMessage.Tresc" class="form-label"></label>
+                <textarea asp-for="NewMessage.Tresc" class="form-control" name="Tresc" rows="4" placeholder="Opisz sprawę, którą chcesz przekazać agentowi"></textarea>
+            </div>
+            <div class="col-12 text-end">
+                <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Wyślij wiadomość</button>
+            </div>
+        </form>
     </div>
 
     @if (Model.Items.Any())

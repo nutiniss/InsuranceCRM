@@ -134,6 +134,46 @@ namespace Firma.Intranet.Controllers
             return View(wiadomosc);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reply(int id, string tresc)
+        {
+            var wiadomosc = await _context.Wiadomosc.AsNoTracking().FirstOrDefaultAsync(m => m.IdWiadomosci == id);
+            if (wiadomosc == null)
+            {
+                return NotFound();
+            }
+
+            if (string.IsNullOrWhiteSpace(tresc))
+            {
+                TempData["MessageError"] = "Treść odpowiedzi jest wymagana.";
+                return RedirectToAction(nameof(Details), new { id });
+            }
+
+            _context.Wiadomosc.Add(new Wiadomosc
+            {
+                Temat = wiadomosc.Temat.StartsWith("Re:", StringComparison.OrdinalIgnoreCase) ? wiadomosc.Temat : $"Re: {wiadomosc.Temat}",
+                Tresc = tresc.Trim(),
+                Typ = "Odpowiedź agenta",
+                DataUtworzenia = DateTime.Now,
+                DataWyslania = DateTime.Now,
+                CzyPrzeczytana = false,
+                IdKlienta = wiadomosc.IdKlienta,
+                IdUzytkownika = wiadomosc.IdUzytkownika
+            });
+
+            var source = await _context.Wiadomosc.FindAsync(id);
+            if (source != null)
+            {
+                source.CzyPrzeczytana = true;
+            }
+
+            await _context.SaveChangesAsync();
+            TempData["MessageSuccess"] = "Odpowiedź została wysłana do klienta.";
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
         // GET: Wiadomosc/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
