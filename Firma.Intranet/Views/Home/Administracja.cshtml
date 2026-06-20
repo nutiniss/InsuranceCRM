@@ -1,3 +1,4 @@
+@model AdminReportViewModel
 @{
     ViewData["Title"] = "Administracja";
 }
@@ -26,5 +27,40 @@
             <span class="module-title">Teksty portalu</span>
             <span class="module-description">Steruj tytułami i opisami widocznymi w portalu klienta.</span>
         </a>
+    </div>
+
+
+    <div class="admin-report-card">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+            <div>
+                <p class="crm-eyebrow">Raport administratora</p>
+                <h2>Sprzedane polisy per agent</h2>
+                <p class="crm-muted mb-0">Zestawienie pokazuje liczbę polis i sumę składek przypisanych do opiekunów.</p>
+            </div>
+            <span class="report-total">Razem: @Model.TotalPoliciesSold</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle report-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Rola</th>
+                        <th class="text-end">Liczba polis</th>
+                        <th class="text-end">Suma składek</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.PolicySalesByAgent)
+                    {
+                        <tr>
+                            <td>@row.AgentName</td>
+                            <td>@row.Role</td>
+                            <td class="text-end"><strong>@row.PoliciesSold</strong></td>
+                            <td class="text-end">@row.PremiumTotal.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>

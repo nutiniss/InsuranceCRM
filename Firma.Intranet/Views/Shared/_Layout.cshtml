@@ -19,19 +19,22 @@
                 </a>
 
                 <div class="user-menu d-flex align-items-center flex-wrap gap-3">
-                    <a href="#" class="text-decoration-none top-link d-flex align-items-center gap-2">
-                        <span class="position-relative d-inline-block">
-                            <span class="icon-circle" aria-hidden="true"><i class="bi bi-bell"></i></span>
-                            <span class="badge rounded-pill bg-danger notification-badge">5</span>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        @await Component.InvokeAsync("Notifications")
+                        <span class="divider"></span>
+                        <span class="d-flex align-items-center gap-2 text-secondary">
+                            <span class="icon-circle" aria-hidden="true"><i class="bi bi-person"></i></span>
+                            <span class="username">@User.Identity.Name</span>
                         </span>
-                        <span>Powiadomienia</span>
-                    </a>
-                    <span class="divider"></span>
-                    <span class="d-flex align-items-center gap-2 text-secondary">
-                        <span class="icon-circle" aria-hidden="true"><i class="bi bi-person"></i></span>
-                        <span class="username">Jan Kowalski</span>
-                    </span>
-                    <a href="#" class="btn btn-outline-success btn-sm px-3">WYLOGUJ</a>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
+                            <button type="submit" class="btn btn-outline-success btn-sm px-3">WYLOGUJ</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success btn-sm px-3" asp-controller="Account" asp-action="Login">ZALOGUJ</a>
+                    }
                 </div>
             </div>
         </div>

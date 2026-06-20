@@ -52,9 +52,25 @@ namespace Firma.Intranet.Controllers
             return RedirectToAction("Index", "Oferta");
         }
 
-        public IActionResult Administracja()
+        public async Task<IActionResult> Administracja()
         {
-            return View();
+            var rows = await _context.Uzytkownik
+                .Select(u => new AgentPolicySalesRow
+                {
+                    AgentName = u.Imie + " " + u.Nazwisko,
+                    Role = u.Rola,
+                    PoliciesSold = u.Polisy.Count,
+                    PremiumTotal = u.Polisy.Sum(p => (decimal?)p.Skladka) ?? 0m
+                })
+                .OrderByDescending(r => r.PoliciesSold)
+                .ThenBy(r => r.AgentName)
+                .ToListAsync();
+
+            return View(new AdminReportViewModel
+            {
+                PolicySalesByAgent = rows,
+                TotalPoliciesSold = rows.Sum(r => r.PoliciesSold)
+            });
         }
 
         public IActionResult Privacy()
