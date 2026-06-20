@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = Model.Title;
-    var nieprzeczytane = Model.Items.Count(wiadomosc => !wiadomosc.CzyPrzeczytana);
+    var nieprzeczytane = Model.Items.Count(wiadomosc => !wiadomosc.CzyPrzeczytana && wiadomosc.Typ != "Wiadomość klienta");
 }
 
 <section class="hero-panel client-page-hero mb-4">
@@ -71,7 +71,8 @@
         <div class="message-list">
             @foreach (var wiadomosc in Model.Items)
             {
-                <article class="message-item @(wiadomosc.CzyPrzeczytana ? string.Empty : "unread")">
+                var wymagaOdczytania = !wiadomosc.CzyPrzeczytana && wiadomosc.Typ != "Wiadomość klienta";
+                <article class="message-item @(wymagaOdczytania ? "unread" : string.Empty)">
                     <div class="message-icon" aria-hidden="true"><i class="bi bi-envelope-paper"></i></div>
                     <div class="message-content">
                         <div class="record-card-header mb-2">
@@ -79,7 +80,16 @@
                                 <span class="record-number">@wiadomosc.Typ</span>
                                 <h3>@wiadomosc.Temat</h3>
                             </div>
-                            <span class="status-pill">@(wiadomosc.CzyPrzeczytana ? "Przeczytana" : "Nowa")</span>
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="status-pill">@(wymagaOdczytania ? "Nowa" : "Przeczytana")</span>
+                                @if (wymagaOdczytania)
+                                {
+                                    <form asp-action="OznaczWiadomoscJakoPrzeczytana" asp-route-id="@wiadomosc.IdWiadomosci" method="post" class="m-0">
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-outline-primary btn-sm" type="submit">Oznacz jako przeczytaną</button>
+                                    </form>
+                                }
+                            </div>
                         </div>
                         <p class="record-description">@wiadomosc.Tresc</p>
                         <div class="record-meta-grid compact">

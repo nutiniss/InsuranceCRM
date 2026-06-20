@@ -12,8 +12,7 @@
 <body>
     @{
         var unreadMessages = ViewBag.UnreadMessages is int messages ? messages : 0;
-        var activePolicies = ViewBag.ActivePolicies is int policies ? policies : 0;
-        var notificationCount = unreadMessages + activePolicies;
+        var notificationCount = unreadMessages;
         var clientName = ViewBag.PortalClientName as string ?? "Klient";
     }
     <header>
@@ -25,12 +24,12 @@
                 </a>
 
                 <div class="user-menu d-flex align-items-center flex-wrap gap-3">
-                    <a asp-controller="Home" asp-action="Powiadomienia" class="text-decoration-none top-link d-flex align-items-center gap-2" title="Otwórz powiadomienia i oznacz wiadomości jako przeczytane">
+                    <a asp-controller="Home" asp-action="Wiadomosci" class="text-decoration-none top-link d-flex align-items-center gap-2" title="Przejdź do listy wiadomości">
                         <span class="position-relative d-inline-block">
                             <span class="icon-circle" aria-hidden="true"><i class="bi bi-bell"></i></span>
                             <span class="badge rounded-pill bg-danger notification-badge">@notificationCount</span>
                         </span>
-                        <span>Powiadomienia</span><small class="text-muted">@unreadMessages wiadomości / @activePolicies polis</small>
+                        <span>Powiadomienia</span><small class="text-muted">@unreadMessages wiadomości</small>
                     </a>
                     <span class="divider"></span>
                     <span class="d-flex align-items-center gap-2 text-secondary">

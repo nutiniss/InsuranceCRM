@@ -274,11 +274,40 @@ namespace Firma.PortalWWW.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OznaczWiadomoscJakoPrzeczytana(int id)
+        {
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
+            var wiadomosc = await _context.Wiadomosc
+                .FirstOrDefaultAsync(wiadomosc => wiadomosc.IdWiadomosci == id && wiadomosc.IdKlienta == idKlienta);
+
+            if (wiadomosc == null)
+            {
+                TempData["PortalError"] = "Nie znaleziono wiadomości do oznaczenia.";
+                return RedirectToAction(nameof(Wiadomosci));
+            }
+
+            if (!CzyWiadomoscWymagaOdczytaniaPrzezKlienta(wiadomosc))
+            {
+                TempData["PortalSuccess"] = "Wiadomość jest już oznaczona jako przeczytana.";
+                return RedirectToAction(nameof(Wiadomosci));
+            }
+
+            wiadomosc.CzyPrzeczytana = true;
+            await _context.SaveChangesAsync();
+            TempData["PortalSuccess"] = "Wiadomość została oznaczona jako przeczytana.";
+            return RedirectToAction(nameof(Wiadomosci));
+        }
+
+
         public async Task<IActionResult> Powiadomienia()
         {
             var idKlienta = await PobierzIdKlientaPortaluAsync();
             var nieprzeczytane = await _context.Wiadomosc
-                .Where(wiadomosc => wiadomosc.IdKlienta == idKlienta && !wiadomosc.CzyPrzeczytana)
+                .Where(wiadomosc => wiadomosc.IdKlienta == idKlienta
+                    && !wiadomosc.CzyPrzeczytana
+                    && wiadomosc.Typ != "Wiadomość klienta")
                 .ToListAsync();
 
             if (nieprzeczytane.Count > 0)
@@ -295,6 +324,12 @@ namespace Firma.PortalWWW.Controllers
             return RedirectToAction(nameof(Wiadomosci));
         }
 
+
+        private static bool CzyWiadomoscWymagaOdczytaniaPrzezKlienta(Wiadomosc wiadomosc)
+        {
+            return !wiadomosc.CzyPrzeczytana && wiadomosc.Typ != "Wiadomość klienta";
+        }
+
         private async Task PrzygotujPowiadomieniaAsync()
         {
             var idKlienta = await PobierzIdKlientaPortaluAsync();
@@ -305,8 +340,9 @@ namespace Firma.PortalWWW.Controllers
                 .FirstOrDefaultAsync();
 
             ViewBag.PortalClientName = klient is null ? "Klient" : $"{klient.Imie} {klient.Nazwisko}";
-            ViewBag.UnreadMessages = await _context.Wiadomosc.CountAsync(wiadomosc => wiadomosc.IdKlienta == idKlienta && !wiadomosc.CzyPrzeczytana);
-            ViewBag.ActivePolicies = await _context.Polisa.CountAsync(polisa => polisa.IdKlienta == idKlienta && polisa.Status != "Zakończona" && polisa.Status != "Anulowana");
+            ViewBag.UnreadMessages = await _context.Wiadomosc.CountAsync(wiadomosc => wiadomosc.IdKlienta == idKlienta
+                && !wiadomosc.CzyPrzeczytana
+                && wiadomosc.Typ != "Wiadomość klienta");
         }
 
         private async Task<int> PobierzIdKlientaPortaluAsync()
