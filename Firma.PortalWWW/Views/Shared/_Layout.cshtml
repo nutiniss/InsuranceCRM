@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
+    @{
+        var unreadMessages = ViewBag.UnreadMessages is int messages ? messages : 0;
+        var activePolicies = ViewBag.ActivePolicies is int policies ? policies : 0;
+        var notificationCount = unreadMessages + activePolicies;
+    }
     <header>
         <div class="client-topbar border-bottom">
             <div class="container-fluid px-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -22,9 +27,9 @@
                     <a href="#" class="text-decoration-none top-link d-flex align-items-center gap-2">
                         <span class="position-relative d-inline-block">
                             <span class="icon-circle" aria-hidden="true"><i class="bi bi-bell"></i></span>
-                            <span class="badge rounded-pill bg-danger notification-badge">5</span>
+                            <span class="badge rounded-pill bg-danger notification-badge">@notificationCount</span>
                         </span>
-                        <span>Powiadomienia</span>
+                        <span>Powiadomienia</span><small class="text-muted">@unreadMessages wiadomości / @activePolicies polis</small>
                     </a>
                     <span class="divider"></span>
                     <span class="d-flex align-items-center gap-2 text-secondary">

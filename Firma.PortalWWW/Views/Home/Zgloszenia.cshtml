@@ -1,4 +1,4 @@
-@model Firma.PortalWWW.Models.ClientPortalListViewModel<Firma.Data.Data.Ubezpieczenia.Zgloszenie>
+@model Firma.PortalWWW.Models.ClientPortalClaimsViewModel
 
 @{
     ViewData["Title"] = Model.Title;
@@ -27,7 +27,50 @@
         <div>
             <h2 class="section-title">Lista zgłoszeń</h2>
         </div>
-        <a class="btn btn-primary" href="#"><i class="bi bi-plus-circle"></i> Nowe zgłoszenie</a>
+        
+    </div>
+
+
+    @if (TempData["PortalSuccess"] is string success)
+    {
+        <div class="alert alert-success" role="alert">@success</div>
+    }
+    @if (TempData["PortalError"] is string error)
+    {
+        <div class="alert alert-danger" role="alert">@error</div>
+    }
+
+    <div class="client-form-card mb-4">
+        <h3 class="h5 mb-3">Nowe zgłoszenie</h3>
+        <form asp-action="UtworzZgloszenie" method="post" class="row g-3">
+            @Html.AntiForgeryToken()
+            <div class="col-md-5">
+                <label asp-for="NewClaim.Tytul" class="form-label"></label>
+                <input asp-for="NewClaim.Tytul" class="form-control" name="Tytul" placeholder="Np. Szkoda komunikacyjna" />
+            </div>
+            <div class="col-md-3">
+                <label asp-for="NewClaim.Typ" class="form-label"></label>
+                <select asp-for="NewClaim.Typ" class="form-select" name="Typ">
+                    <option>Szkoda</option>
+                    <option>Zmiana danych</option>
+                    <option>Pytanie o polisę</option>
+                    <option>Reklamacja</option>
+                    <option>Prośba o kontakt</option>
+                    <option>Inne</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Opiekun</label>
+                <input class="form-control" value="@(Model.Agents.FirstOrDefault() is null ? "Automatyczne przypisanie" : $"{Model.Agents.First().Imie} {Model.Agents.First().Nazwisko}")" disabled />
+            </div>
+            <div class="col-12">
+                <label asp-for="NewClaim.Opis" class="form-label"></label>
+                <textarea asp-for="NewClaim.Opis" class="form-control" name="Opis" rows="4" placeholder="Opisz zdarzenie lub sprawę"></textarea>
+            </div>
+            <div class="col-12 text-end">
+                <button class="btn btn-primary" type="submit"><i class="bi bi-plus-circle"></i> Utwórz zgłoszenie</button>
+            </div>
+        </form>
     </div>
 
     @if (Model.Items.Any())
