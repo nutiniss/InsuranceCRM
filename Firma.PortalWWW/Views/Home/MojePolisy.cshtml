@@ -51,6 +51,11 @@
                             <div><span>Kategoria</span><strong>@(polisa.ProduktUbezpieczeniowy?.Kategoria ?? "—")</strong></div>
                             <div><span>Opiekun</span><strong>@(polisa.Uzytkownik is null ? "—" : $"{polisa.Uzytkownik.Imie} {polisa.Uzytkownik.Nazwisko}")</strong></div>
                         </div>
+                        <div class="record-actions mt-3">
+                            <a class="btn btn-primary w-100" asp-controller="Home" asp-action="PobierzPolisePdf" asp-route-id="@polisa.IdPolisy">
+                                <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Pobierz PDF
+                            </a>
+                        </div>
                     </article>
                 </div>
             }
