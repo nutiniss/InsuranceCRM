@@ -1,0 +1,13 @@
+@model Firma.Data.Data.CMS.TekstPortalu
+@{
+    ViewData["Title"] = "Szczegóły tekstu portalu";
+}
+<div class="crm-form-card">
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Klucz)</dt><dd class="col-sm-9"><code>@Model.Klucz</code></dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Tytul)</dt><dd class="col-sm-9">@Html.DisplayFor(model => model.Tytul)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Tresc)</dt><dd class="col-sm-9">@Html.DisplayFor(model => model.Tresc)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CzyAktywny)</dt><dd class="col-sm-9">@Html.DisplayFor(model => model.CzyAktywny)</dd>
+    </dl>
+</div>
+<div class="d-flex gap-2 mt-3"><a asp-action="Edit" asp-route-id="@Model.IdTekstuPortalu" class="btn btn-primary">Edytuj</a><a asp-action="Index" class="btn btn-outline-secondary">Powrót do listy</a></div>
