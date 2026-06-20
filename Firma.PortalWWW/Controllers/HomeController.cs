@@ -1,6 +1,7 @@
 using Firma.Data.Data;
 using Firma.Data.Data.CMS;
 using Firma.PortalWWW.Models;
+using Firma.PortalWWW.Services;
 using Firma.Data.Data.Ubezpieczenia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -134,6 +135,28 @@ namespace Firma.PortalWWW.Controllers
                 SummaryCaption = "polis w portfelu",
                 Items = polisy
             });
+        }
+
+        public async Task<IActionResult> PobierzPolisePdf(int id)
+        {
+            await PrzygotujPowiadomieniaAsync();
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
+            var polisa = await _context.Polisa
+                .AsNoTracking()
+                .Include(polisa => polisa.Klient)
+                .Include(polisa => polisa.ProduktUbezpieczeniowy)
+                .Include(polisa => polisa.Uzytkownik)
+                .FirstOrDefaultAsync(polisa => polisa.IdPolisy == id && polisa.IdKlienta == idKlienta);
+
+            if (polisa is null)
+            {
+                TempData["PortalError"] = "Nie znaleziono polisy do pobrania.";
+                return RedirectToAction(nameof(MojePolisy));
+            }
+
+            var pdfBytes = PolicyPdfGenerator.Generate(polisa);
+            var safePolicyNumber = string.Join("-", polisa.NumerPolisy.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries));
+            return File(pdfBytes, "application/pdf", $"polisa-{safePolicyNumber}.pdf");
         }
 
         public async Task<IActionResult> MojeOferty()
