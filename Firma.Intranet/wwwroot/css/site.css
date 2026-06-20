@@ -683,3 +683,95 @@ main a[href$="/Index"] {
         width: 100%;
     }
 }
+
+/* Login, notifications and reports */
+.login-page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 190px);
+}
+
+.login-card,
+.admin-report-card {
+    background: #fff;
+    border: 1px solid #9acda9;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(35, 92, 58, 0.12);
+    padding: 1.5rem;
+}
+
+.login-card {
+    max-width: 440px;
+    width: 100%;
+}
+
+.login-brand img {
+    height: 72px;
+    object-fit: contain;
+}
+
+.login-brand h1,
+.admin-report-card h2 {
+    color: #1f6b43;
+    font-weight: 700;
+}
+
+.login-hint,
+.notification-empty,
+.notification-item small {
+    color: #5b7164;
+    font-size: 0.9rem;
+}
+
+.notification-dropdown .dropdown-toggle::after {
+    margin-left: 0.15rem;
+}
+
+.notification-menu {
+    border: 1px solid #c9e5d2;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(31, 107, 67, 0.16);
+    min-width: 320px;
+    overflow: hidden;
+}
+
+.notification-menu-header {
+    background: #e8f4ec;
+    color: #1f6b43;
+    font-weight: 700;
+    padding: 0.85rem 1rem;
+}
+
+.notification-empty {
+    padding: 1rem;
+}
+
+.notification-item {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+}
+
+.notification-item i {
+    color: #2ba84a;
+    font-size: 1.35rem;
+}
+
+.notification-item span {
+    display: flex;
+    flex-direction: column;
+}
+
+.report-total {
+    background: #e8f4ec;
+    border-radius: 999px;
+    color: #1f6b43;
+    font-weight: 700;
+    padding: 0.55rem 1rem;
+}
+
+.report-table thead th {
+    color: #245b3d;
+}

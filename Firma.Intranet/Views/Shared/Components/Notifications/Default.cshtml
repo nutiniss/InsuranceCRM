@@ -1,0 +1,31 @@
+@model NotificationViewModel
+
+<div class="dropdown notification-dropdown">
+    <button class="btn top-link dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="position-relative d-inline-block">
+            <span class="icon-circle" aria-hidden="true"><i class="bi bi-bell"></i></span>
+            @if (Model.TotalCount > 0)
+            {
+                <span class="badge rounded-pill bg-danger notification-badge">@Model.TotalCount</span>
+            }
+        </span>
+        <span>Powiadomienia</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end notification-menu p-0">
+        <div class="notification-menu-header">Centrum powiadomień</div>
+        @if (Model.Items.Count == 0)
+        {
+            <div class="notification-empty">Brak nowych powiadomień.</div>
+        }
+        else
+        {
+            @foreach (var item in Model.Items)
+            {
+                <a class="dropdown-item notification-item" asp-controller="@item.Controller" asp-action="@item.Action">
+                    <i class="bi @item.Icon"></i>
+                    <span><strong>@item.Title</strong><small>@item.Description</small></span>
+                </a>
+            }
+        }
+    </div>
+</div>
