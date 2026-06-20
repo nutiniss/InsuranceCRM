@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Firma.Data.Data.CMS;
 using Firma.Data.Data.Common;
 using Firma.Data.Data.Ubezpieczenia;
 
@@ -38,8 +37,6 @@ public class FirmaContext : DbContext
 
     public DbSet<PozycjaSlownika> PozycjaSlownika { get; set; } = default!;
 
-    public DbSet<TekstPortalu> TekstPortalu { get; set; } = default!;
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -55,31 +52,12 @@ public class FirmaContext : DbContext
         modelBuilder.Entity<Zadanie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<Zgloszenie>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
         modelBuilder.Entity<PozycjaSlownika>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
-        modelBuilder.Entity<TekstPortalu>().HasQueryFilter(e => e.StatusRekordu != RecordStatus.Deleted);
 
         modelBuilder.Entity<PozycjaSlownika>()
             .HasIndex(e => new { e.Typ, e.Wartosc })
             .IsUnique();
 
-        modelBuilder.Entity<TekstPortalu>()
-            .HasIndex(e => e.Klucz)
-            .IsUnique();
-
         modelBuilder.Entity<PozycjaSlownika>().HasData(PozycjeSlownikow());
-        modelBuilder.Entity<TekstPortalu>().HasData(TekstyPortalu());
-    }
-
-    private static TekstPortalu[] TekstyPortalu()
-    {
-        return
-        [
-            new TekstPortalu { IdTekstuPortalu = 1, Klucz = "portal.start.hero", Tytul = "Witaj w swoim centrum ubezpieczeń", Tresc = "Sprawdzaj polisy, dodawaj zgłoszenia i korzystaj z aktualnych propozycji przygotowanych przez agentów.", Kolejnosc = 1, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active },
-            new TekstPortalu { IdTekstuPortalu = 2, Klucz = "portal.zgloszenia.hero", Tytul = "Zgłoszenia", Tresc = "Monitoruj zgłoszenia, statusy spraw oraz kontakt z opiekunem ubezpieczeniowym.", Kolejnosc = 2, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active },
-            new TekstPortalu { IdTekstuPortalu = 3, Klucz = "portal.wiadomosci.hero", Tytul = "Wiadomości", Tresc = "Przeglądaj wiadomości od opiekuna, powiadomienia systemowe i ważne informacje dotyczące polis.", Kolejnosc = 3, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active },
-            new TekstPortalu { IdTekstuPortalu = 4, Klucz = "portal.polisy.hero", Tytul = "Moje polisy", Tresc = "Sprawdzaj aktywne polisy, terminy ochrony, składki oraz produkty przypisane do Twojego konta.", Kolejnosc = 4, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active },
-            new TekstPortalu { IdTekstuPortalu = 5, Klucz = "portal.oferty.hero", Tytul = "Moje oferty", Tresc = "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.", Kolejnosc = 5, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active },
-            new TekstPortalu { IdTekstuPortalu = 6, Klucz = "portal.agenci.hero", Tytul = "Agenci", Tresc = "Wybierz agenta, z którym chcesz porozmawiać o swojej polisie, zgłoszeniu lub nowej ofercie.", Kolejnosc = 6, CzyAktywny = true, DataUtworzenia = new DateTime(2026, 6, 20), StatusRekordu = RecordStatus.Active }
-        ];
     }
 
     private static PozycjaSlownika[] PozycjeSlownikow()
