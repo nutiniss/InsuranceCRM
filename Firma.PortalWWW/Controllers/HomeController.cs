@@ -5,17 +5,20 @@ using Firma.Data.Data.Ubezpieczenia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Firma.PortalWWW.Controllers
 {
     public class HomeController : Controller
     {
-        private const int PortalClientId = 1;
+        private const int DefaultPortalClientId = 1;
         private readonly FirmaContext _context;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(FirmaContext context)
+        public HomeController(FirmaContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -47,10 +50,11 @@ namespace Firma.PortalWWW.Controllers
         public async Task<IActionResult> Zgloszenia()
         {
             await PrzygotujPowiadomieniaAsync();
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
             var zgloszenia = await _context.Zgloszenie
                 .AsNoTracking()
                 .Include(zgloszenie => zgloszenie.Uzytkownik)
-                .Where(zgloszenie => zgloszenie.IdKlienta == PortalClientId)
+                .Where(zgloszenie => zgloszenie.IdKlienta == idKlienta)
                 .OrderByDescending(zgloszenie => zgloszenie.DataUtworzenia)
                 .Take(12)
                 .ToListAsync();
@@ -76,10 +80,11 @@ namespace Firma.PortalWWW.Controllers
         public async Task<IActionResult> Wiadomosci()
         {
             await PrzygotujPowiadomieniaAsync();
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
             var wiadomosci = await _context.Wiadomosc
                 .AsNoTracking()
                 .Include(wiadomosc => wiadomosc.Uzytkownik)
-                .Where(wiadomosc => wiadomosc.IdKlienta == PortalClientId)
+                .Where(wiadomosc => wiadomosc.IdKlienta == idKlienta)
                 .OrderByDescending(wiadomosc => wiadomosc.DataWyslania ?? wiadomosc.DataUtworzenia)
                 .Take(12)
                 .ToListAsync();
@@ -105,11 +110,12 @@ namespace Firma.PortalWWW.Controllers
         public async Task<IActionResult> MojePolisy()
         {
             await PrzygotujPowiadomieniaAsync();
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
             var polisy = await _context.Polisa
                 .AsNoTracking()
                 .Include(polisa => polisa.ProduktUbezpieczeniowy)
                 .Include(polisa => polisa.Uzytkownik)
-                .Where(polisa => polisa.IdKlienta == PortalClientId)
+                .Where(polisa => polisa.IdKlienta == idKlienta)
                 .OrderBy(polisa => polisa.KoniecOchrony)
                 .Take(12)
                 .ToListAsync();
@@ -133,12 +139,13 @@ namespace Firma.PortalWWW.Controllers
         public async Task<IActionResult> MojeOferty()
         {
             await PrzygotujPowiadomieniaAsync();
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
             var teraz = DateTime.Now;
             var oferty = await _context.Oferta
                 .AsNoTracking()
                 .Include(oferta => oferta.ProduktUbezpieczeniowy)
                 .Include(oferta => oferta.Uzytkownik)
-                .Where(oferta => oferta.IdKlienta == PortalClientId)
+                .Where(oferta => oferta.IdKlienta == idKlienta)
                 .OrderByDescending(oferta => oferta.DataUtworzenia)
                 .Take(12)
                 .ToListAsync();
@@ -155,7 +162,7 @@ namespace Firma.PortalWWW.Controllers
             ViewBag.HeroTekst = await PobierzTekstPortaluAsync(
                 "portal.oferty.hero",
                 "Moje oferty",
-                "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.");
+                "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne oferty promocyjne dostępne w portalu klienta.");
 
             return View(new ClientPortalOffersViewModel
             {
@@ -217,7 +224,7 @@ namespace Firma.PortalWWW.Controllers
                 DataUtworzenia = DateTime.Now,
                 DataWyslania = DateTime.Now,
                 CzyPrzeczytana = false,
-                IdKlienta = PortalClientId,
+                IdKlienta = await PobierzIdKlientaPortaluAsync(),
                 IdUzytkownika = form.IdUzytkownika
             });
             await _context.SaveChangesAsync();
@@ -244,7 +251,7 @@ namespace Firma.PortalWWW.Controllers
                 Typ = form.Typ,
                 Status = "Nowe",
                 DataUtworzenia = DateTime.Now,
-                IdKlienta = PortalClientId,
+                IdKlienta = await PobierzIdKlientaPortaluAsync(),
                 IdUzytkownika = agentId == 0 ? null : agentId
             });
             await _context.SaveChangesAsync();
@@ -267,10 +274,58 @@ namespace Firma.PortalWWW.Controllers
         }
 
 
+        public async Task<IActionResult> Powiadomienia()
+        {
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
+            var nieprzeczytane = await _context.Wiadomosc
+                .Where(wiadomosc => wiadomosc.IdKlienta == idKlienta && !wiadomosc.CzyPrzeczytana)
+                .ToListAsync();
+
+            if (nieprzeczytane.Count > 0)
+            {
+                foreach (var wiadomosc in nieprzeczytane)
+                {
+                    wiadomosc.CzyPrzeczytana = true;
+                }
+
+                await _context.SaveChangesAsync();
+                TempData["PortalSuccess"] = "Powiadomienia zostały oznaczone jako przeczytane.";
+            }
+
+            return RedirectToAction(nameof(Wiadomosci));
+        }
+
         private async Task PrzygotujPowiadomieniaAsync()
         {
-            ViewBag.UnreadMessages = await _context.Wiadomosc.CountAsync(wiadomosc => wiadomosc.IdKlienta == PortalClientId && !wiadomosc.CzyPrzeczytana);
-            ViewBag.ActivePolicies = await _context.Polisa.CountAsync(polisa => polisa.IdKlienta == PortalClientId && polisa.Status != "Zakończona" && polisa.Status != "Anulowana");
+            var idKlienta = await PobierzIdKlientaPortaluAsync();
+            var klient = await _context.Klient
+                .AsNoTracking()
+                .Where(klient => klient.IdKlienta == idKlienta)
+                .Select(klient => new { klient.Imie, klient.Nazwisko })
+                .FirstOrDefaultAsync();
+
+            ViewBag.PortalClientName = klient is null ? "Klient" : $"{klient.Imie} {klient.Nazwisko}";
+            ViewBag.UnreadMessages = await _context.Wiadomosc.CountAsync(wiadomosc => wiadomosc.IdKlienta == idKlienta && !wiadomosc.CzyPrzeczytana);
+            ViewBag.ActivePolicies = await _context.Polisa.CountAsync(polisa => polisa.IdKlienta == idKlienta && polisa.Status != "Zakończona" && polisa.Status != "Anulowana");
+        }
+
+        private async Task<int> PobierzIdKlientaPortaluAsync()
+        {
+            var claimValue = User.FindFirstValue("IdKlienta") ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(claimValue, out var claimClientId) && await CzyKlientIstniejeAsync(claimClientId))
+            {
+                return claimClientId;
+            }
+
+            var configuredClientId = _configuration.GetValue<int?>("ClientPortal:ClientId") ?? DefaultPortalClientId;
+            return await CzyKlientIstniejeAsync(configuredClientId)
+                ? configuredClientId
+                : await _context.Klient.AsNoTracking().OrderBy(klient => klient.IdKlienta).Select(klient => klient.IdKlienta).FirstAsync();
+        }
+
+        private async Task<bool> CzyKlientIstniejeAsync(int idKlienta)
+        {
+            return await _context.Klient.AsNoTracking().AnyAsync(klient => klient.IdKlienta == idKlienta);
         }
 
         private async Task<List<Uzytkownik>> PobierzAgentowAsync()
