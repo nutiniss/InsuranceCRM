@@ -1,0 +1,26 @@
+@model Firma.Data.Data.CMS.StronaPortalu
+
+@{
+    ViewData["Title"] = Model.Tytul;
+}
+
+<section class="hero-panel client-page-hero mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-9">
+            @if (!string.IsNullOrWhiteSpace(Model.NaglowekPomocniczy))
+            {
+                <span class="hero-eyebrow">@Model.NaglowekPomocniczy</span>
+            }
+            <h1 class="hero-title">@Model.Tytul</h1>
+        </div>
+    </div>
+</section>
+
+<section class="client-panel">
+    <article class="fs-5 lh-lg">
+        @foreach (var akapit in Model.Tresc.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
+        {
+            <p>@akapit</p>
+        }
+    </article>
+</section>

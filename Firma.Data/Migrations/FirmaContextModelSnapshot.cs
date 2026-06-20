@@ -22,6 +22,94 @@ namespace Firma.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Firma.Data.Data.CMS.StronaPortalu", b =>
+                {
+                    b.Property<int>("IdStronyPortalu")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdStronyPortalu"));
+
+                    b.Property<bool>("CzyAktywna")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CzyWidocznaWMenu")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DataModyfikacji")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUtworzenia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Kolejnosc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NaglowekPomocniczy")
+                        .HasMaxLength(160)
+                        .HasColumnType("nvarchar(160)");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("StatusRekordu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tresc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Tytul")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("TytulMenu")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("IdStronyPortalu");
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
+
+                    b.ToTable("StronaPortalu");
+
+                    b.HasData(
+                        new
+                        {
+                            IdStronyPortalu = 1,
+                            CzyAktywna = true,
+                            CzyWidocznaWMenu = true,
+                            DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kolejnosc = 1,
+                            NaglowekPomocniczy = "Instrukcje dla klientów",
+                            Slug = "jak-zglosic-szkode",
+                            StatusRekordu = "Aktywny",
+                            Tresc = "Opisz zdarzenie, dołącz dokumenty i śledź status sprawy w zakładce Zgłoszenia. Po przyjęciu zgłoszenia opiekun skontaktuje się z Tobą z kolejnymi krokami.",
+                            Tytul = "Jak zgłosić szkodę?",
+                            TytulMenu = "Zgłoszenie szkody"
+                        },
+                        new
+                        {
+                            IdStronyPortalu = 2,
+                            CzyAktywna = true,
+                            CzyWidocznaWMenu = true,
+                            DataUtworzenia = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kolejnosc = 2,
+                            NaglowekPomocniczy = "Wsparcie w portalu klienta",
+                            Slug = "kontakt-z-agentem",
+                            StatusRekordu = "Aktywny",
+                            Tresc = "Wybierz opiekuna w zakładce Agenci albo wyślij wiadomość z portalu. Agent pomoże w sprawach polis, ofert, zgłoszeń oraz odnowień.",
+                            Tytul = "Kontakt z agentem",
+                            TytulMenu = "Kontakt"
+                        });
+                });
+
             modelBuilder.Entity("Firma.Data.Data.Ubezpieczenia.Klient", b =>
                 {
                     b.Property<int>("IdKlienta")
