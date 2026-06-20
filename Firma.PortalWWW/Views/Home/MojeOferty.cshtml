@@ -12,7 +12,7 @@
         <div class="col-lg-8">
             <span class="hero-eyebrow">Propozycje dla klienta</span>
             <h1 class="hero-title">@(heroTekst?.Tytul ?? "Moje oferty")</h1>
-            <p class="hero-lead">@(heroTekst?.Tresc ?? "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne komunikaty marketingowe dostępne w portalu klienta.")</p>
+            <p class="hero-lead">@(heroTekst?.Tresc ?? "Porównaj przygotowane propozycje ubezpieczeniowe oraz aktualne oferty promocyjne dostępne w portalu klienta.")</p>
         </div>
         <div class="col-lg-4">
             <div class="hero-summary-card">
@@ -46,7 +46,7 @@
                             <span class="status-pill">@oferta.Status</span>
                         </div>
                         <div class="record-meta-grid">
-                            <div><span>Przypis</span><strong>@oferta.Przypis.ToString("C")</strong></div>
+                            <div><span>Składka</span><strong>@oferta.Przypis.ToString("C")</strong></div>
                             <div><span>Utworzono</span><strong>@oferta.DataUtworzenia.ToString("dd.MM.yyyy")</strong></div>
                             <div><span>Ważna do</span><strong>@(oferta.DataWaznosci?.ToString("dd.MM.yyyy") ?? "Bezterminowo")</strong></div>
                             <div><span>Opiekun</span><strong>@(oferta.Uzytkownik is null ? "—" : $"{oferta.Uzytkownik.Imie} {oferta.Uzytkownik.Nazwisko}")</strong></div>
@@ -69,7 +69,7 @@
 <section class="marketing-offers-section">
     <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
         <div>
-            <h2 class="section-title">Aktualne komunikaty marketingowe</h2>
+            <h2 class="section-title">Oferty promocyjne</h2>
         </div>
     </div>
 
@@ -103,7 +103,7 @@
     {
         <div class="empty-offers-state text-center p-5">
             <i class="bi bi-megaphone empty-offers-icon" aria-hidden="true"></i>
-            <h3>Brak aktywnych komunikatów</h3>
+            <h3>Brak aktywnych ofert promocyjnych</h3>
             <p class="mb-0">Nowe kampanie marketingowe zostaną wyświetlone po ich publikacji przez administratora.</p>
         </div>
     }

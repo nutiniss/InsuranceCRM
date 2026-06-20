@@ -14,6 +14,7 @@
         var unreadMessages = ViewBag.UnreadMessages is int messages ? messages : 0;
         var activePolicies = ViewBag.ActivePolicies is int policies ? policies : 0;
         var notificationCount = unreadMessages + activePolicies;
+        var clientName = ViewBag.PortalClientName as string ?? "Klient";
     }
     <header>
         <div class="client-topbar border-bottom">
@@ -24,7 +25,7 @@
                 </a>
 
                 <div class="user-menu d-flex align-items-center flex-wrap gap-3">
-                    <a href="#" class="text-decoration-none top-link d-flex align-items-center gap-2">
+                    <a asp-controller="Home" asp-action="Powiadomienia" class="text-decoration-none top-link d-flex align-items-center gap-2" title="Otwórz powiadomienia i oznacz wiadomości jako przeczytane">
                         <span class="position-relative d-inline-block">
                             <span class="icon-circle" aria-hidden="true"><i class="bi bi-bell"></i></span>
                             <span class="badge rounded-pill bg-danger notification-badge">@notificationCount</span>
@@ -34,7 +35,7 @@
                     <span class="divider"></span>
                     <span class="d-flex align-items-center gap-2 text-secondary">
                         <span class="icon-circle" aria-hidden="true"><i class="bi bi-person"></i></span>
-                        <span class="username">Jan Kowalski</span>
+                        <span class="username">@clientName</span>
                     </span>
                     <a href="#" class="btn btn-outline-primary btn-sm px-3">WYLOGUJ</a>
                 </div>
